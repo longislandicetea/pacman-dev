@@ -1,0 +1,77 @@
+Texture playerTexture
+{
+ filename=wordpress-logo.png
+ resgroup=1
+}
+
+Sprite Player
+{
+ texture=playerTexture
+ rect=0,0,25,25
+ hotspot=0,0
+ blendmode=COLORMUL,ALPHABLEND,NOZWRITE
+ resgroup=1
+}
+
+Texture beanTexture
+{
+ filename=Chrysanthemum.jpg
+ resgroup=1
+}
+
+Sprite Bean
+{
+ texture=beanTexture
+ rect=0,0,30,30
+ hotspot=0,0
+ blendmode=COLORMUL,ALPHABLEND,NOZWRITE
+ resgroup=1
+}
+
+Texture wallTexture
+{
+ filename=Hydrangeas.jpg
+ resgroup=1
+}
+
+Sprite Wall
+{
+ texture=wallTexture
+ rect=0,0,30,30
+ hotspot=0,0
+ blendmode=COLORMUL,ALPHABLEND,NOZWRITE
+ resgroup=1
+}
+
+
+Texture superbeanTexture
+{
+ filename=Winter.jpg
+ resgroup=1
+}
+
+Sprite SuperBean
+{
+ texture=superbeanTexture
+ rect=0,0,30,30
+ hotspot=0,0
+ blendmode=COLORMUL,ALPHABLEND,NOZWRITE
+ resgroup=1
+}
+
+Texture monsterTexture
+{
+ filename=Sunset.jpg
+ resgroup=1
+}
+
+Sprite Monster
+{
+ texture=monsterTexture
+ rect=0,0,30,30
+ hotspot=0,0
+ blendmode=COLORMUL,ALPHABLEND,NOZWRITE
+ resgroup=1
+}
+
+
