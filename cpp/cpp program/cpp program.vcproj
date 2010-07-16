@@ -215,10 +215,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\MovableObject.h"
-				>
-			</File>
-			<File
 				RelativePath=".\Player.cpp"
 				>
 			</File>
@@ -262,6 +258,10 @@
 			</File>
 			<File
 				RelativePath=".\MonsterAI.h"
+				>
+			</File>
+			<File
+				RelativePath=".\MovableObject.h"
 				>
 			</File>
 			<File
