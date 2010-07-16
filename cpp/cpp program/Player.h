@@ -15,10 +15,14 @@ public:
 	virtual void Render();
 	hgeRect* GetBoundingBox();
 	float State();
+	int GetLife();
+	void SetLife();
 	void SetState(float val) { state = val; }
+	void SetScore(int added);
 private:
 	hgeSprite *spr;
 	HGE *hge;
 	GameScene *gameScene;
 	float state;
+	int life;
 };

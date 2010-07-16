@@ -10,6 +10,7 @@ Monster::Monster(Map *map,const char* sprname):MovableObject(100,0,0)
 	spr = Application::Inst()->resMan()->GetSprite(sprname);
 	ai=new MonsterAI(map);
 	sprName = sprname;
+	score = 200;
 
 }
 

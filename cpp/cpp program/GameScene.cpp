@@ -1,14 +1,17 @@
 #include "GameScene.h"
 #include "Application.h"
 #include "Map.h"
+#include <hgeresource.h>
+#include <hgefont.h>
 #include "Player.h"
 #include <vector>
 
 GameScene::GameScene()
 {
-	gameMap=new Map(this);
+	gameMap = new Map(this);
 	gameMap->SetMap("mappic.txt");
-	player=new Player(this);
+	player = new Player(this);
+	fnt = Application::Inst()->resMan()->GetFont("ScoreAndLife");
 }
 
 bool GameScene::FrameFunc()
@@ -23,6 +26,7 @@ bool GameScene::RenderFunc()
 {
 	player->Render();
 	gameMap->Render();
+	fnt->printf(30,30,HGETEXT_LEFT,"Score:%d\nLife:%d",GetPlayer()->GetScore(),GetPlayer()->GetLife());
 	return false;
 }
 

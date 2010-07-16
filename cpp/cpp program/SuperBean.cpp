@@ -9,4 +9,10 @@ SuperBean::SuperBean( float x , float y ) : Bean(x,y)
 	posx = x;
 	posy = y;
 	time = 10.0f;
+	score=50;
+}
+
+SuperBean::~SuperBean()
+{
+
 }

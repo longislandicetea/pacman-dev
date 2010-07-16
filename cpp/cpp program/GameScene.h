@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <hgefont.h>
 #include "IScene.h"
 
 class Map;
@@ -18,4 +19,5 @@ public:
 private:
 	Player *player;
 	Map *gameMap;
+	hgeFont *fnt;
 };

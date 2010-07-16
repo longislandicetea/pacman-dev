@@ -8,6 +8,7 @@ Bean::Bean( float x , float y )
 	spr = Application::Inst()->resMan()->GetSprite("Bean");
 	posx = x;
 	posy = y;
+	score=10;
 }
 
 void Bean::Update( float delta )
