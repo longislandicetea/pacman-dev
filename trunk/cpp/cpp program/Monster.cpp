@@ -4,11 +4,13 @@
 #include <hgeresource.h>
 #include "MonsterAI.h"
 
-Monster::Monster(Map *map):MovableObject(200,0,0)
+Monster::Monster(Map *map,const char* sprname):MovableObject(100,0,0)
 {
 	hge = Application::Inst()->Hge();
-	spr = Application::Inst()->resMan()->GetSprite("Monster");
+	spr = Application::Inst()->resMan()->GetSprite(sprname);
 	ai=new MonsterAI(map);
+	sprName = sprname;
+
 }
 
 Monster::~Monster()

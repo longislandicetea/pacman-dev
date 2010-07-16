@@ -1,8 +1,13 @@
 #include "Map.h"
-#include<cstdio>
-#include<vector>
+#include <cstdio>
+#include <cmath>
+#include <vector>
+#include <string>
+#include <algorithm>
 #include <hgeresource.h>
-#include "hgerect.h"
+#include <hgerect.h>
+#include <hge.h>
+#include <hgesprite.h>
 #include "GameScene.h"
 #include "Player.h"
 #include "Monster.h"
@@ -16,7 +21,7 @@ Map::Map(GameScene *scene)
 	hge = Application::Inst()->Hge();
 	wallSpr = Application::Inst()->resMan()->GetSprite("Wall");
 	beanSpr = Application::Inst()->resMan()->GetSprite("Bean");
-	sideLen = 32;
+	sideLen = 15;
 	gameScene = scene;
 }
 
@@ -53,8 +58,10 @@ void Map::SetMap( char* filename )
 			
 			float posx = j*sideLen, posy = i*sideLen;
 			hgeRect* tmprect = new hgeRect(posx,posy,posx+sideLen,posy+sideLen);
-			if(tmpc=='X')
-				walls.push_back(tmprect);
+			if(tmpc=='X') 
+			{
+				walls.push_back(new hgeRect(*tmprect));
+			}
 			else if(tmpc=='P')
 			{
 				playerX = posx;
@@ -72,10 +79,13 @@ void Map::SetMap( char* filename )
 			}
 			else if(tmpc=='M') 
 			{
-				Monster* m = new Monster(this);
+				Monster* m = new Monster(this,"Monster");
+				monsterX = tmprect->x1;
+				monsterY = tmprect->y1;
 				m->SetPos(tmprect->x1,tmprect->y1);
 				monsters.push_back(m);
 			}
+			delete tmprect;
 		}
 		fscanf(fin,"\n");
 	}
@@ -85,7 +95,8 @@ void Map::CheckAndEat( hgeRect *rc )
 {
 	for(int i=0;i<(int)beans.size();++i)
 	{
-		if(beans[i]->GetBoundingBox()->Intersect(rc))
+		hgeRect* brc = beans[i]->GetBoundingBox();
+		if(brc->Intersect(rc))
 		{
 			if (typeid(*beans[i])==typeid(SuperBean)) 
 			{
@@ -95,13 +106,34 @@ void Map::CheckAndEat( hgeRect *rc )
 			delete beans[i];
 			beans.erase(beans.begin()+i);
 		}
+		delete brc;
 	}
+}
+
+bool check2(const RecoverInfo &info) 
+{
+	return info.recoverMinute < -100.0f;
 }
 
 void Map::Update( float dt )
 {
 	for(int i=0;i<(int)monsters.size();++i)
 		monsters[i]->Update(dt);
+	for(int i=0;i<(int)inserted.size();++i)
+		inserted[i].recoverMinute-=dt;
+
+	for (int i = 0 ;i<(int)inserted.size();++i) 
+	{
+		if(inserted[i].recoverMinute<=0.0f) 
+		{
+			Monster *m = new Monster(this,inserted[i].recoverSprName.c_str());
+			m->SetPos(monsterX,monsterY);
+			monsters.push_back(m);
+			inserted[i].recoverMinute = -1000.0f;
+		}
+	}
+	std::vector<RecoverInfo>::iterator newEnd = std::remove_if(inserted.begin(),inserted.end(),check2);
+	inserted.erase(newEnd,inserted.end());
 }
 
 void Map::Render()
@@ -114,22 +146,37 @@ void Map::Render()
 		monsters[i]->Render();
 }
 
+bool check(Monster* monster) 
+{
+	return monster == NULL;
+}
+
 void Map::Eat( hgeRect *rc )
 {
-	for(int i=0;i<(int)monsters.size();++i)
+	typedef MonsterContainer::iterator mIter;
+	mIter cur = monsters.begin();
+	while(cur != monsters.end()) 
 	{
-		hgeRect* tmprect=monsters[i]->GetBoudingBox();
+		hgeRect* tmprect=(*cur)->GetBoudingBox();
 		if(rc->Intersect(tmprect))
 		{
 			if(fabs(gameScene->GetPlayer()->State())<1e-6)
 			{
-				//TODO
+				//todo;
 			}
 			else
 			{
-				delete monsters[i];
-				monsters.erase(monsters.begin()+i);
+				const std::string& tn = (*cur)->SprName();
+				RecoverInfo tmp;
+				tmp.recoverSprName=tn;
+				tmp.recoverMinute=1.0f;
+				inserted.push_back(tmp);
+				delete (*cur);
+				*cur = NULL;
 			}
 		}
+		++cur;
 	}
+	mIter newEnd = std::remove_if(monsters.begin(),monsters.end(),check);
+	monsters.erase(newEnd,monsters.end());
 }

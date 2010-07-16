@@ -6,7 +6,7 @@
 #include "GameScene.h"
 #include "Map.h"
 
-Player::Player(GameScene* scene) : MovableObject(200,0,0)
+Player::Player(GameScene* scene) : MovableObject(100,0,0)
 {
 	state = 0.0f;
 	hge = Application::Inst()->Hge();
@@ -38,6 +38,9 @@ void Player::Update(float delta)
 	gameScene->GetMap()->Eat(rc);
 	gameScene->GetMap()->CheckAndEat(rc);
 	delete rc;
+	state-=delta;
+	if (state < 0.0f)
+		state = 0.0f;
 }
 
 Player::~Player()

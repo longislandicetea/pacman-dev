@@ -7,7 +7,7 @@ Texture playerTexture
 Sprite Player
 {
  texture=playerTexture
- rect=0,0,25,25
+ rect=0,0,8,8
  hotspot=0,0
  blendmode=COLORMUL,ALPHABLEND,NOZWRITE
  resgroup=1
@@ -22,7 +22,7 @@ Texture beanTexture
 Sprite Bean
 {
  texture=beanTexture
- rect=0,0,30,30
+ rect=0,0,15,15
  hotspot=0,0
  blendmode=COLORMUL,ALPHABLEND,NOZWRITE
  resgroup=1
@@ -37,7 +37,7 @@ Texture wallTexture
 Sprite Wall
 {
  texture=wallTexture
- rect=0,0,30,30
+ rect=0,0,15,15
  hotspot=0,0
  blendmode=COLORMUL,ALPHABLEND,NOZWRITE
  resgroup=1
@@ -53,7 +53,7 @@ Texture superbeanTexture
 Sprite SuperBean
 {
  texture=superbeanTexture
- rect=0,0,30,30
+ rect=0,0,15,15
  hotspot=0,0
  blendmode=COLORMUL,ALPHABLEND,NOZWRITE
  resgroup=1
@@ -68,7 +68,7 @@ Texture monsterTexture
 Sprite Monster
 {
  texture=monsterTexture
- rect=0,0,30,30
+ rect=0,0,15,15
  hotspot=0,0
  blendmode=COLORMUL,ALPHABLEND,NOZWRITE
  resgroup=1

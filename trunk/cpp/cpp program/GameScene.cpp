@@ -7,7 +7,7 @@
 GameScene::GameScene()
 {
 	gameMap=new Map(this);
-	gameMap->SetMap("mapinfo.txt");
+	gameMap->SetMap("mappic.txt");
 	player=new Player(this);
 }
 

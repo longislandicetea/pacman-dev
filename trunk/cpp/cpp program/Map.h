@@ -3,11 +3,19 @@
 #include <hge.h>
 #include <hgesprite.h>
 #include <vector>
+#include <string>
 #include "IGameObject.h"
 
 class Bean;
 class Monster;
 class GameScene;
+
+struct RecoverInfo
+{
+	std::string recoverSprName;
+	float recoverMinute;
+};
+
 class Map : IGameObject
 {
 public:
@@ -20,13 +28,16 @@ public:
 	void Eat(hgeRect *rc);
 	void CheckAndEat(hgeRect *rc);
 	float PlayerX() const { return playerX; }
-	float PlayerY() const { return playerY; }
+	float PlayerY() const { return playerY;} 
 private:
+	typedef std::vector<Monster*> MonsterContainer;
 	std::vector<hgeRect*> walls;
 	std::vector<Bean*> beans;
-	std::vector<Monster*> monsters;
+	MonsterContainer monsters;
+	std::vector<RecoverInfo> inserted;
 	float playerX,playerY;
 	int length,width;
+	float monsterX , monsterY;
 	float sideLen;
 	hgeSprite *wallSpr;
 	hgeSprite *beanSpr;
