@@ -14,6 +14,8 @@ Player::Player(GameScene* scene) : MovableObject(100,0,0)
 	gameScene = scene;
 	posx = scene->GetMap()->PlayerX();
 	posy = scene->GetMap()->PlayerY();
+	score = 0;
+	life = 3;
 }
 
 void Player::Render()
@@ -56,4 +58,20 @@ hgeRect* Player::GetBoundingBox()
 float Player::State()
 {
 	return state;
+}
+
+void Player::SetScore( int added )
+{
+	score+=added;
+}
+
+void Player::SetLife()
+{
+	if(life>0)
+		--life;
+}
+
+int Player::GetLife()
+{
+	return life;
 }

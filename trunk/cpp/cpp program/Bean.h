@@ -10,10 +10,12 @@ public:
 	virtual ~Bean();
 	virtual void Update(float delta);
 	virtual void Render();
+	float Time() const { return time; }
 	hgeRect* GetBoundingBox();
 protected:
 	hgeSprite *spr;
 	HGE *hge;
 	float posx;
 	float posy;
+	float time;
 };

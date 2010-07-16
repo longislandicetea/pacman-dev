@@ -74,4 +74,25 @@ Sprite Monster
  resgroup=1
 }
 
+Texture fruitTexture
+{
+ filename=picasabackground.jpg
+ resgroup=1
+}
+
+Sprite Fruit
+{
+ texture=fruitTexture
+ rect=0,0,15,15
+ hotspot=0,0
+ blendmode=COLORMUL,ALPHABLEND,NOZWRITE
+ resgroup=1
+}
+
+Font ScoreAndLife
+{
+ filename=font1.fnt
+ tracking=1.0
+ resgroup=1
+}
 

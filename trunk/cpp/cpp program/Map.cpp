@@ -13,6 +13,7 @@
 #include "Monster.h"
 #include "Bean.h"
 #include "SuperBean.h"
+#include "Fruit.h"
 #include "Application.h"
 #pragma warning (disable: 4996)
 
@@ -85,6 +86,11 @@ void Map::SetMap( char* filename )
 				m->SetPos(tmprect->x1,tmprect->y1);
 				monsters.push_back(m);
 			}
+			else if(tmpc=='F')
+			{
+				Bean* b = new Fruit(tmprect->x1,tmprect->y1);
+				beans.push_back(b);
+			}
 			delete tmprect;
 		}
 		fscanf(fin,"\n");
@@ -96,13 +102,23 @@ void Map::CheckAndEat( hgeRect *rc )
 	for(int i=0;i<(int)beans.size();++i)
 	{
 		hgeRect* brc = beans[i]->GetBoundingBox();
+		bool isBean = true;
 		if(brc->Intersect(rc))
 		{
 			if (typeid(*beans[i])==typeid(SuperBean)) 
 			{
 				gameScene->GetPlayer()->SetState(((SuperBean*)beans[i])->Time());
+				gameScene->GetPlayer()->SetScore(50);
+				isBean = false;
 			}
-
+			else if(typeid(*beans[i])==typeid(Fruit))
+			{
+				gameScene->GetPlayer()->SetState(((Fruit*)beans[i])->Time());
+				gameScene->GetPlayer()->SetScore(100);
+				isBean = false;
+			}
+			if(isBean)
+				gameScene->GetPlayer()->SetScore(10);
 			delete beans[i];
 			beans.erase(beans.begin()+i);
 		}
@@ -163,6 +179,7 @@ void Map::Eat( hgeRect *rc )
 			if(fabs(gameScene->GetPlayer()->State())<1e-6)
 			{
 				//todo;
+				gameScene->GetPlayer()->SetLife();
 			}
 			else
 			{
@@ -173,6 +190,7 @@ void Map::Eat( hgeRect *rc )
 				inserted.push_back(tmp);
 				delete (*cur);
 				*cur = NULL;
+				gameScene->GetPlayer()->SetScore(200);
 			}
 		}
 		++cur;
