@@ -8,12 +8,14 @@
 
 Player::Player(GameScene* scene) : MovableObject(100,0,0)
 {
-	state = 0.0f;
+
 	hge = Application::Inst()->Hge();
 	spr = Application::Inst()->resMan()->GetSprite("Player");
 	gameScene = scene;
 	posx = scene->GetMap()->PlayerX();
 	posy = scene->GetMap()->PlayerY();
+	begX = posx;
+	begY = posy;
 	score = 0;
 	life = 3;
 }
@@ -40,9 +42,6 @@ void Player::Update(float delta)
 	gameScene->GetMap()->Eat(rc);
 	gameScene->GetMap()->CheckAndEat(rc);
 	delete rc;
-	state-=delta;
-	if (state < 0.0f)
-		state = 0.0f;
 }
 
 Player::~Player()
@@ -55,14 +54,10 @@ hgeRect* Player::GetBoundingBox()
 	return spr->GetBoundingBox(posx,posy,rect);
 }
 
-float Player::State()
-{
-	return state;
-}
 
 void Player::SetScore( int added )
 {
-	score+=added;
+	score += added;
 }
 
 void Player::SetLife()
@@ -74,4 +69,20 @@ void Player::SetLife()
 int Player::GetLife()
 {
 	return life;
+}
+
+void Player::SetPos( float x, float y )
+{
+	posx = x;
+	posy = y;
+}
+
+float Player::BegX()
+{
+	return begX;
+}
+
+float Player::BegY()
+{
+	return begY;
 }

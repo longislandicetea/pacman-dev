@@ -139,3 +139,19 @@ Font MenuFont
  resgroup=1
 }
 
+Texture newMonsterTexture
+{
+ filename=medium.jpg
+ resgroup=1
+}
+
+Sprite NewMonster
+{
+ texture=newMonsterTexture
+ rect=0,0,15,15
+ hotspot=0,0
+ blendmode=COLORMUL,ALPHABLEND,NOZWRITE
+ resgroup=1
+}
+
+

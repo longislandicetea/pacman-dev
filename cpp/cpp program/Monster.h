@@ -14,11 +14,15 @@ public:
 	~Monster();
 	virtual void Update(float delta);
 	virtual void Render();
+	void SetWeak(float time);
+	bool IsWeak() { return weakTime > 0.0f;}
 	void SetPos(float x , float y);
 	hgeRect* GetBoudingBox();
 	const std::string& SprName() const { return sprName; }
 private:
+	float weakTime;
 	hgeSprite *spr;
+	hgeSprite *newSpr;
 	HGE *hge;
 	MonsterAI *ai;
 	std::string sprName;
