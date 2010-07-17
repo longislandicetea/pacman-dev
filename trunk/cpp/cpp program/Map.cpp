@@ -22,7 +22,6 @@ Map::Map(GameScene *scene)
 {
 	hge = Application::Inst()->Hge();
 	wallSpr = Application::Inst()->resMan()->GetSprite("Wall");
-	beanSpr = Application::Inst()->resMan()->GetSprite("Bean");
 	sideLen = 15;
 	gameScene = scene;
 }
@@ -100,7 +99,7 @@ void Map::SetMap( char *filename )
 
 void Map::CheckAndEat( hgeRect *rc ) 
 {
-	for(int i=0;i<(int)beans.size();++i)
+	for(int i = 0;i<(int)beans.size();++i)
 	{
 		hgeRect* brc = beans[i]->GetBoundingBox();
 		bool isBean = true;
@@ -108,13 +107,15 @@ void Map::CheckAndEat( hgeRect *rc )
 		{
 			if (typeid(*beans[i])==typeid(SuperBean)) 
 			{
-				gameScene->GetPlayer()->SetState(((SuperBean*)beans[i])->Time());
 				gameScene->GetPlayer()->SetScore(50);
+				for(int j =0;j<(int)monsters.size();++j)
+				{
+					monsters[j]->SetWeak(((SuperBean*)beans[i])->Time());
+				}
 				isBean = false;
 			}
 			else if(typeid(*beans[i])==typeid(Fruit))
 			{
-				gameScene->GetPlayer()->SetState(((Fruit*)beans[i])->Time());
 				gameScene->GetPlayer()->SetScore(100);
 				isBean = false;
 			}
@@ -138,7 +139,6 @@ void Map::Update( float dt )
 		monsters[i]->Update(dt);
 	for(int i=0;i<(int)inserted.size();++i)
 		inserted[i].recoverMinute-=dt;
-
 	for (int i = 0 ;i<(int)inserted.size();++i) 
 	{
 		if(inserted[i].recoverMinute<=0.0f) 
@@ -175,12 +175,14 @@ void Map::Eat( hgeRect *rc )
 	while(cur != monsters.end()) 
 	{
 		hgeRect* tmprect=(*cur)->GetBoudingBox();
+		Player* tmpplayer=gameScene->GetPlayer();
 		if(rc->Intersect(tmprect))
 		{
-			if(fabs(gameScene->GetPlayer()->State())<1e-6)
+			if(!((*cur)->IsWeak()))
 			{
-				gameScene->GetPlayer()->SetLife();
-				if(gameScene->GetPlayer()->GetLife()==0)
+				tmpplayer->SetLife();
+				tmpplayer->SetPos(tmpplayer->BegX(),tmpplayer->BegY());
+				if(tmpplayer->GetLife()==0)
 				{
 					Application::Inst()->ChangeScene(new MenuScene());
 				}
@@ -194,7 +196,7 @@ void Map::Eat( hgeRect *rc )
 				inserted.push_back(tmp);
 				delete (*cur);
 				*cur = NULL;
-				gameScene->GetPlayer()->SetScore(200);
+				tmpplayer->SetScore(200);
 			}
 		}
 		++cur;

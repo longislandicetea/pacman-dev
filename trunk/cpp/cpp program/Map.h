@@ -40,7 +40,6 @@ private:
 	float monsterX , monsterY;
 	float sideLen;
 	hgeSprite *wallSpr;
-	hgeSprite *beanSpr;
 	GameScene *gameScene;
 	HGE *hge;
 };
