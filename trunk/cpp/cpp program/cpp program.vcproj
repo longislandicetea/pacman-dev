@@ -207,6 +207,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\MenuItem.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\MenuScene.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\Monster.cpp"
 				>
 			</File>
@@ -258,6 +266,14 @@
 			</File>
 			<File
 				RelativePath=".\Map.h"
+				>
+			</File>
+			<File
+				RelativePath=".\MenuItem.h"
+				>
+			</File>
+			<File
+				RelativePath=".\MenuScene.h"
 				>
 			</File>
 			<File
