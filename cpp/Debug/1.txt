@@ -96,3 +96,46 @@ Font ScoreAndLife
  resgroup=1
 }
 
+Texture cursorTexture
+{
+ filename=cursor.png
+ resgroup=1
+}
+
+Sprite Cursor
+{
+ texture=cursorTexture
+ rect=0,0,8,8
+ hotspot=0,0
+ blendmode=COLORMUL,ALPHABLEND,NOZWRITE
+ resgroup=1
+}
+
+Texture backgroundTexture
+{
+ filename=bg.png
+ resgroup=1
+}
+
+Sprite Background
+{
+ texture=backgroundTexture
+ rect=0,0,400,400
+ hotspot=0,0
+ blendmode=COLORMUL,ALPHABLEND,NOZWRITE
+ resgroup=1
+}
+
+Sound CursorSound
+{
+ filename=menu.wav
+ resgroup=1
+}
+
+Font MenuFont
+{
+ filename=font2.fnt
+ tracking=1.0
+ resgroup=1
+}
+

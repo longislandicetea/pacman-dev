@@ -15,6 +15,7 @@
 #include "SuperBean.h"
 #include "Fruit.h"
 #include "Application.h"
+#include "MenuScene.h"
 #pragma warning (disable: 4996)
 
 Map::Map(GameScene *scene)
@@ -46,7 +47,7 @@ bool Map::IsCollide( hgeRect& rhs )
 	return false;
 }
 
-void Map::SetMap( char* filename )
+void Map::SetMap( char *filename )
 {
 	FILE* fin = fopen(filename,"r");
 	fscanf(fin,"%d%d\n",&length,&width);
@@ -178,8 +179,11 @@ void Map::Eat( hgeRect *rc )
 		{
 			if(fabs(gameScene->GetPlayer()->State())<1e-6)
 			{
-				//todo;
 				gameScene->GetPlayer()->SetLife();
+				if(gameScene->GetPlayer()->GetLife()==0)
+				{
+					Application::Inst()->ChangeScene(new MenuScene());
+				}
 			}
 			else
 			{

@@ -2,14 +2,16 @@
 #include "IScene.h"
 #include <hge.h>
 #include <cassert>
-#include "GameScene.h"
+//#include "GameScene.h"
+#include "MenuScene.h"
 #include <hgeresource.h>
 
 Application::Application()
 {
 	Initialize();
 	res = new hgeResourceManager("1.txt");
-	current = new GameScene();
+	current = new MenuScene();
+	toBeChanged = NULL;
 }
 
 
@@ -20,6 +22,12 @@ void Application::Run()
 
 bool Application::FrameFunc()
 {
+	if (Inst()->toBeChanged!=NULL) 
+	{
+		delete Inst()->current;
+		Inst()->current = Inst()->toBeChanged;
+		Inst()->toBeChanged = NULL;
+	}
 	return Inst()->current->FrameFunc();
 }
 
@@ -47,6 +55,7 @@ HGE* Application::Hge()
 Application::~Application()
 {
 	delete current;
+	delete toBeChanged;
 	delete res;
 	hge->System_Shutdown();
 	hge->Release();
@@ -67,4 +76,9 @@ void Application::Initialize()
 hgeResourceManager* Application::resMan()
 {
 	return res;
+}
+
+void Application::ChangeScene( IScene* scene )
+{
+	toBeChanged = scene;
 }

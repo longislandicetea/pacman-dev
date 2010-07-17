@@ -13,11 +13,13 @@ public:
 	hgeResourceManager* resMan();
 	static bool FrameFunc();
 	static bool RenderFunc();
+	void ChangeScene(IScene* scene);
 	~Application();
 private:
 	Application();
 	void Initialize();
 	IScene *current;
+	IScene *toBeChanged;
 	HGE *hge;
 	hgeResourceManager *res;
 };
