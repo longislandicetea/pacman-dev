@@ -15,6 +15,7 @@ struct RecoverInfo
 	std::string recoverSprName;
 	float recoverMinute;
 };
+class Fruit;
 
 class Map : IGameObject
 {
@@ -39,6 +40,9 @@ private:
 	int length,width;
 	float monsterX , monsterY;
 	float sideLen;
+	float fruitTime;
+	float fruitX,fruitY;
+	Fruit *fruit;
 	hgeSprite *wallSpr;
 	GameScene *gameScene;
 	HGE *hge;

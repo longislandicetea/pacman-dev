@@ -31,3 +31,8 @@ MovableObject::MovableObject( float _speed , float _posx , float _posy )
 	posx=_posx;
 	posy=_posy;
 }
+
+MovableObject::~MovableObject()
+{
+
+}

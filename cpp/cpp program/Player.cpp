@@ -55,7 +55,7 @@ hgeRect* Player::GetBoundingBox()
 }
 
 
-void Player::SetScore( int added )
+void Player::AddScore( int added )
 {
 	score += added;
 }

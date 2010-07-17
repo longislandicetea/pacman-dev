@@ -24,6 +24,8 @@ Map::Map(GameScene *scene)
 	wallSpr = Application::Inst()->resMan()->GetSprite("Wall");
 	sideLen = 15;
 	gameScene = scene;
+	fruitTime = 2.0f;
+	fruit = NULL;
 }
 
 Map::~Map()
@@ -88,8 +90,8 @@ void Map::SetMap( char *filename )
 			}
 			else if(tmpc=='F')
 			{
-				Bean* b = new Fruit(tmprect->x1,tmprect->y1);
-				beans.push_back(b);
+				fruitX = tmprect->x1;
+				fruitY = tmprect->y1;
 			}
 			delete tmprect;
 		}
@@ -102,29 +104,31 @@ void Map::CheckAndEat( hgeRect *rc )
 	for(int i = 0;i<(int)beans.size();++i)
 	{
 		hgeRect* brc = beans[i]->GetBoundingBox();
-		bool isBean = true;
 		if(brc->Intersect(rc))
 		{
+			gameScene->GetPlayer()->AddScore(beans[i]->GetScore());
 			if (typeid(*beans[i])==typeid(SuperBean)) 
 			{
-				gameScene->GetPlayer()->SetScore(50);
 				for(int j =0;j<(int)monsters.size();++j)
 				{
 					monsters[j]->SetWeak(((SuperBean*)beans[i])->Time());
 				}
-				isBean = false;
 			}
-			else if(typeid(*beans[i])==typeid(Fruit))
-			{
-				gameScene->GetPlayer()->SetScore(100);
-				isBean = false;
-			}
-			if(isBean)
-				gameScene->GetPlayer()->SetScore(10);
 			delete beans[i];
 			beans.erase(beans.begin()+i);
 		}
 		delete brc;
+	}
+	if (fruit!=NULL) 
+	{
+		hgeRect *frc = fruit->GetBoundingBox();
+		if (frc->Intersect(rc)) 
+		{
+			gameScene->GetPlayer()->AddScore(fruit->GetScore());
+			delete fruit;
+			fruit = NULL;
+			fruitTime = 20.0f;
+		}
 	}
 }
 
@@ -151,10 +155,28 @@ void Map::Update( float dt )
 	}
 	std::vector<RecoverInfo>::iterator newEnd = std::remove_if(inserted.begin(),inserted.end(),check2);
 	inserted.erase(newEnd,inserted.end());
+	if(fruitTime>0.0f)
+		fruitTime -= dt;
+	if (fruitTime<=0.0f)
+	{
+		if (fruit == NULL) 
+		{
+			fruit = new Fruit(fruitX,fruitY);
+			fruitTime = 10.0f;
+		} 
+		else 
+		{
+			delete fruit;
+			fruit = NULL;
+			fruitTime = 20.0f;
+		}
+	}
 }
 
 void Map::Render()
 {
+	if (fruit!=NULL)
+		fruit->Render();
 	for(int i=0;i<(int)walls.size();++i)
 		wallSpr->Render(walls[i]->x1,walls[i]->y1);
 	for(int i=0;i<(int)beans.size();++i)
@@ -196,7 +218,7 @@ void Map::Eat( hgeRect *rc )
 				inserted.push_back(tmp);
 				delete (*cur);
 				*cur = NULL;
-				tmpplayer->SetScore(200);
+				tmpplayer->AddScore(200);
 			}
 		}
 		++cur;

@@ -12,11 +12,7 @@ public:
 	void Down(float len);
 	void Left(float len);
 	void Right(float len);
-	float PosX() const { return posx; }
-	float PosY() const { return posy; }
-	virtual ~MovableObject(){};
+	virtual ~MovableObject();
 protected:
 	float speed;
-	float posx;
-	float posy;
 };
