@@ -18,7 +18,7 @@ public:
 	float BegY();
 	int GetLife();
 	void SetLife();
-	void SetScore(int added);
+	void AddScore(int added);
 	void SetPos(float x, float y);
 private:
 	hgeSprite *spr;

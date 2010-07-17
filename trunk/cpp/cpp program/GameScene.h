@@ -17,7 +17,9 @@ public:
 	Player* GetPlayer();
 	~GameScene();
 private:
+	bool paused;
 	Player *player;
 	Map *gameMap;
 	hgeFont *fnt;
+	hgeFont *pauseFnt;
 };

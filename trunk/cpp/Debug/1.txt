@@ -153,5 +153,3 @@ Sprite NewMonster
  blendmode=COLORMUL,ALPHABLEND,NOZWRITE
  resgroup=1
 }
-
-

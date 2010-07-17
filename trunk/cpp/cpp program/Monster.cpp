@@ -36,21 +36,15 @@ void Monster::Update( float delta )
 void Monster::Render()
 {
 	if (weakTime > 0.0f)
-		newSpr->Render(posx , posy);
+		newSpr->Render(posX , posY);
 	else 
-		spr->Render(posx,posy);
+		spr->Render(posX,posY);
 }
 
 hgeRect* Monster::GetBoudingBox()
 {
 	hgeRect *rect = new hgeRect();
-	return spr->GetBoundingBox(posx,posy,rect);
-}
-
-void Monster::SetPos( float x , float y )
-{
-	posx = x;
-	posy = y;
+	return spr->GetBoundingBox(posX,posY,rect);
 }
 
 void Monster::SetWeak( float time )
