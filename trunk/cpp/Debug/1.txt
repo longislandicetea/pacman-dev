@@ -1,14 +1,17 @@
 Texture playerTexture
 {
- filename=wordpress-logo.png
+ filename=pacman.png
  resgroup=1
 }
 
-Sprite Player
+Animation Player
 {
  texture=playerTexture
- rect=0,0,8,8
- hotspot=0,0
+ rect=0,0,32,32
+ frames=8
+ fps=16
+ mode=FORWARD,LOOP
+ hotspot=16,16
  blendmode=COLORMUL,ALPHABLEND,NOZWRITE
  resgroup=1
 }

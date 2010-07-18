@@ -70,6 +70,7 @@ void Application::Initialize()
 	hge->System_SetState(HGE_TITLE, "Pacman");
 	hge->System_SetState(HGE_WINDOWED, true);
 	hge->System_SetState(HGE_USESOUND, false);
+	hge->System_SetState(HGE_FPS,60);
 	assert(hge->System_Initiate());
 }
 

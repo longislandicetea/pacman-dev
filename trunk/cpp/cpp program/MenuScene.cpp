@@ -63,10 +63,8 @@ bool MenuScene::FrameFunc()
 
 bool MenuScene::RenderFunc()
 {
-	hge->Gfx_BeginScene();
 	hge->Gfx_RenderQuad(&quad);
 	guiMenu->Render();
-	hge->Gfx_EndScene();
 	return false;
 }
 

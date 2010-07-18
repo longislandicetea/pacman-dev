@@ -10,7 +10,8 @@ Player::Player(GameScene* scene) : MovableObject(100,0,0)
 {
 
 	hge = Application::Inst()->Hge();
-	spr = Application::Inst()->resMan()->GetSprite("Player");
+	spr = Application::Inst()->resMan()->GetAnimation("Player");
+	spr->Play();
 	gameScene = scene;
 	posX = scene->GetMap()->PlayerX();
 	posY = scene->GetMap()->PlayerY();
@@ -39,6 +40,7 @@ void Player::Update(float delta)
 		posX = oldx;
 		posY = oldy;
 	}
+	spr->Update(delta);
 	gameScene->GetMap()->Eat(rc);
 	gameScene->GetMap()->CheckAndEat(rc);
 	delete rc;
