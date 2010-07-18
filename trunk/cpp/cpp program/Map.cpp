@@ -151,43 +151,9 @@ void Map::Update( float dt )
 
 	UpdateSuperBean(dt);
 
-	//{TODO make a function(yvette)
-	for(int i=0;i<(int)inserted.size();++i)
-		inserted[i].recoverMinute-=dt;
+	MonsterRevive(dt);
 
-	for (int i = 0 ;i<(int)inserted.size();++i) 
-	{
-		if(inserted[i].recoverMinute<=0.0f) 
-		{
-			Monster *m = new Monster(this,inserted[i].recoverSprName.c_str());
-			m->SetPos(monsterX,monsterY);
-			monsters.push_back(m);
-			inserted[i].recoverMinute = -1000.0f;
-		}
-	}
-	//}
-
-	std::vector<RecoverInfo>::iterator newEnd = std::remove_if(inserted.begin(),inserted.end(),check2);
-	inserted.erase(newEnd,inserted.end());
-
-	//{TODO : make a function(yvette)
-	if(fruitTime>0.0f)
-		fruitTime -= dt;
-	if (fruitTime<=0.0f)
-	{
-		if (fruit == NULL) 
-		{
-			fruit = new Fruit(fruitX,fruitY);
-			fruitTime = 10.0f;
-		} 
-		else 
-		{
-			delete fruit;
-			fruit = NULL;
-			fruitTime = 20.0f;
-		}
-	}
-	//}
+	SetFruit(dt);
 }
 
 void Map::Render()
@@ -252,4 +218,44 @@ void Map::Eat( hgeRect *rc )
 void Map::UpdateSuperBean(float dt)
 {
 	Application::Inst()->resMan()->GetAnimation("SuperBean")->Update(dt);
+}
+
+void Map::MonsterRevive( float delta )
+{
+	for(int i=0;i<(int)inserted.size();++i)
+		inserted[i].recoverMinute-=delta;
+
+	for (int i = 0 ;i<(int)inserted.size();++i) 
+	{
+		if(inserted[i].recoverMinute<=0.0f) 
+		{
+			Monster *m = new Monster(this,inserted[i].recoverSprName.c_str());
+			m->SetPos(monsterX,monsterY);
+			monsters.push_back(m);
+			inserted[i].recoverMinute = -1000.0f;
+		}
+	}
+
+	std::vector<RecoverInfo>::iterator newEnd = std::remove_if(inserted.begin(),inserted.end(),check2);
+	inserted.erase(newEnd,inserted.end());
+}
+
+void Map::SetFruit( float delta )
+{
+	if(fruitTime>0.0f)
+		fruitTime -= delta;
+	if (fruitTime<=0.0f)
+	{
+		if (fruit == NULL) 
+		{
+			fruit = new Fruit(fruitX,fruitY);
+			fruitTime = 10.0f;
+		} 
+		else 
+		{
+			delete fruit;
+			fruit = NULL;
+			fruitTime = 20.0f;
+		}
+	}
 }
