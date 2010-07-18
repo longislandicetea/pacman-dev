@@ -2,17 +2,19 @@
 #include "Application.h"
 #include <hgeresource.h>
 
-SuperBean::SuperBean( float x , float y ) : Bean(x,y)
+SuperBean::SuperBean( float x , float y ) : Bean(x,y,50,Application::Inst()->resMan()->GetAnimation("SuperBean"))
 {
-	hge = Application::Inst()->Hge();
-	spr = Application::Inst()->resMan()->GetSprite("SuperBean");
-	posx = x;
-	posy = y;
 	time = 10.0f;
-	score = 50;
+	if (!(((hgeAnimation*)this->GetSpr())->IsPlaying()))
+		((hgeAnimation*)this->GetSpr())->Play();
 }
 
 SuperBean::~SuperBean()
 {
 
+}
+
+void SuperBean::Update( float delta )
+{
+	((hgeAnimation*)this->GetSpr())->Update(delta);
 }

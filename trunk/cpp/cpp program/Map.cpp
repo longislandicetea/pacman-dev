@@ -8,6 +8,7 @@
 #include <hgerect.h>
 #include <hge.h>
 #include <hgesprite.h>
+#include <hgeanim.h>
 #include "GameScene.h"
 #include "Player.h"
 #include "Monster.h"
@@ -141,8 +142,16 @@ void Map::Update( float dt )
 {
 	for(int i=0;i<(int)monsters.size();++i)
 		monsters[i]->Update(dt);
+
+	for(int i=0;i<(int)beans.size();++i)
+	{
+		beans[i]->Update(dt);
+	}
+
+	//{TODO make a function(yvette)
 	for(int i=0;i<(int)inserted.size();++i)
 		inserted[i].recoverMinute-=dt;
+
 	for (int i = 0 ;i<(int)inserted.size();++i) 
 	{
 		if(inserted[i].recoverMinute<=0.0f) 
@@ -153,8 +162,12 @@ void Map::Update( float dt )
 			inserted[i].recoverMinute = -1000.0f;
 		}
 	}
+	//}
+
 	std::vector<RecoverInfo>::iterator newEnd = std::remove_if(inserted.begin(),inserted.end(),check2);
 	inserted.erase(newEnd,inserted.end());
+
+	//{TODO : make a function(yvette)
 	if(fruitTime>0.0f)
 		fruitTime -= dt;
 	if (fruitTime<=0.0f)
@@ -171,16 +184,22 @@ void Map::Update( float dt )
 			fruitTime = 20.0f;
 		}
 	}
+	//}
 }
 
 void Map::Render()
 {
 	if (fruit!=NULL)
 		fruit->Render();
+
 	for(int i=0;i<(int)walls.size();++i)
 		wallSpr->Render(walls[i]->x1,walls[i]->y1);
+
 	for(int i=0;i<(int)beans.size();++i)
+	{
 		beans[i]->Render();
+	}
+
 	for(int i=0;i<(int)monsters.size();++i)
 		monsters[i]->Render();
 }

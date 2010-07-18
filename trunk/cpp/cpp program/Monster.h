@@ -21,6 +21,7 @@ public:
 private:
 	float weakTime;
 	hgeSprite *spr;
+	int score;
 	hgeSprite *newSpr;
 	HGE *hge;
 	MonsterAI *ai;
