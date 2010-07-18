@@ -16,6 +16,7 @@ public:
 protected:
 	Bean(float x , float y , int score , hgeSprite* spr);
 private:
+	void Init(float  x , float y);
 	hgeSprite *spr;
 	HGE *hge;
 	int score;

@@ -23,6 +23,7 @@ Map::Map(GameScene *scene)
 {
 	hge = Application::Inst()->Hge();
 	wallSpr = Application::Inst()->resMan()->GetSprite("Wall");
+	Application::Inst()->resMan()->GetAnimation("SuperBean")->Play();
 	sideLen = 15;
 	gameScene = scene;
 	fruitTime = 2.0f;
@@ -148,6 +149,8 @@ void Map::Update( float dt )
 		beans[i]->Update(dt);
 	}
 
+	UpdateSuperBean(dt);
+
 	//{TODO make a function(yvette)
 	for(int i=0;i<(int)inserted.size();++i)
 		inserted[i].recoverMinute-=dt;
@@ -189,9 +192,6 @@ void Map::Update( float dt )
 
 void Map::Render()
 {
-	if (fruit!=NULL)
-		fruit->Render();
-
 	for(int i=0;i<(int)walls.size();++i)
 		wallSpr->Render(walls[i]->x1,walls[i]->y1);
 
@@ -202,6 +202,9 @@ void Map::Render()
 
 	for(int i=0;i<(int)monsters.size();++i)
 		monsters[i]->Render();
+
+	if (fruit!=NULL)
+		fruit->Render();
 }
 
 bool check(Monster* monster) 
@@ -244,4 +247,9 @@ void Map::Eat( hgeRect *rc )
 	}
 	mIter newEnd = std::remove_if(monsters.begin(),monsters.end(),check);
 	monsters.erase(newEnd,monsters.end());
+}
+
+void Map::UpdateSuperBean(float dt)
+{
+	Application::Inst()->resMan()->GetAnimation("SuperBean")->Update(dt);
 }

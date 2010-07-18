@@ -2,18 +2,21 @@
 #include "Application.h"
 #include <hgeresource.h>
 
-Bean::Bean( float x , float y )
-{
+inline void Bean::Init(float x , float y) {
 	hge = Application::Inst()->Hge();
 	spr = Application::Inst()->resMan()->GetSprite("Bean");
 	posX = x;
 	posY = y;
 	score = 10;
 }
+Bean::Bean( float x , float y )
+{
+	Init(x,y);
+}
 
 Bean::Bean( float x , float y , int _score , hgeSprite* _spr )
 {
-	Bean(x , y);
+	Init(x,y);
 	spr = _spr;
 	score = _score;
 }
