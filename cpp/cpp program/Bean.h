@@ -15,11 +15,11 @@ public:
 	hgeRect* GetBoundingBox();
 protected:
 	Bean(float x , float y , int score , hgeSprite* spr);
+	int score;
 private:
 	void Init(float  x , float y);
 	hgeSprite *spr;
 	HGE *hge;
-	int score;
 	float posX;
 	float posY;
 };

@@ -30,7 +30,9 @@ public:
 	void CheckAndEat(hgeRect *rc);
 	void UpdateSuperBean(float dt);
 	float PlayerX() const { return playerX; }
-	float PlayerY() const { return playerY;} 
+	float PlayerY() const { return playerY;}
+	void MonsterRevive(float delta);
+	void SetFruit(float delta);
 private:
 	typedef std::vector<Monster*> MonsterContainer;
 	std::vector<hgeRect*> walls;
