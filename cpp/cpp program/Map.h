@@ -28,6 +28,7 @@ public:
 	bool IsCollide(hgeRect& rhs);
 	void Eat(hgeRect *rc);
 	void CheckAndEat(hgeRect *rc);
+	void UpdateSuperBean(float dt);
 	float PlayerX() const { return playerX; }
 	float PlayerY() const { return playerY;} 
 private:
