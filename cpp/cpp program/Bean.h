@@ -10,12 +10,15 @@ public:
 	virtual ~Bean();
 	virtual void Update(float delta);
 	virtual void Render();
-	float Time() const { return time; }
+	int GetScore();
+	hgeSprite* GetSpr();
 	hgeRect* GetBoundingBox();
 protected:
+	Bean(float x , float y , int score , hgeSprite* spr);
+private:
 	hgeSprite *spr;
 	HGE *hge;
-	float posx;
-	float posy;
-	float time;
+	int score;
+	float posX;
+	float posY;
 };

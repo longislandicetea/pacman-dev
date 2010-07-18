@@ -7,32 +7,33 @@ float MovableObject::Speed()
 
 void MovableObject::Up(float len)
 {
-	posy-=len*speed;
+	posY-=len*speed;
 }
 
 void MovableObject::Down(float len)
 {
-	posy+=len*speed;
+	posY+=len*speed;
 }
 
 void MovableObject::Left(float len)
 {
-	posx-=len*speed;
+	posX-=len*speed;
 }
 
 void MovableObject::Right(float len)
 {
-	posx+=len*speed;
+	posX+=len*speed;
 }
 
 MovableObject::MovableObject( float _speed , float _posx , float _posy )
 {
 	speed=_speed;
-	posx=_posx;
-	posy=_posy;
+	posX=_posx;
+	posY=_posy;
 }
 
-MovableObject::~MovableObject()
+void MovableObject::SetPos( float x , float y )
 {
-
+	posX = x;
+	posY = y;
 }

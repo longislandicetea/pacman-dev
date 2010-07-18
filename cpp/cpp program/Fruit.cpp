@@ -5,13 +5,8 @@
 #include <hgesprite.h>
 #include <cstdlib>
 
-Fruit::Fruit( float x , float y ) :Bean(x,y)
+Fruit::Fruit( float x , float y ) :Bean(x,y,200 ,Application::Inst()->resMan()->GetSprite("Fruit"))
 {
-	hge = Application::Inst()->Hge();
-	spr = Application::Inst()->resMan()->GetSprite("Fruit");
-	posx = x;
-	posy = y;
-	score = 100;
 }
 
 Fruit::~Fruit()

@@ -43,17 +43,19 @@ Sprite Wall
  resgroup=1
 }
 
-
 Texture superbeanTexture
 {
  filename=Winter.jpg
  resgroup=1
 }
 
-Sprite SuperBean
+Animation SuperBean
 {
  texture=superbeanTexture
  rect=0,0,15,15
+ frames=2
+ fps=2.0
+ mode=FORWARD,LOOP
  hotspot=0,0
  blendmode=COLORMUL,ALPHABLEND,NOZWRITE
  resgroup=1
