@@ -145,9 +145,7 @@ void Map::Update( float dt )
 		monsters[i]->Update(dt);
 
 	for(int i=0;i<(int)beans.size();++i)
-	{
 		beans[i]->Update(dt);
-	}
 
 	UpdateSuperBean(dt);
 
@@ -162,9 +160,7 @@ void Map::Render()
 		wallSpr->Render(walls[i]->x1,walls[i]->y1);
 
 	for(int i=0;i<(int)beans.size();++i)
-	{
 		beans[i]->Render();
-	}
 
 	for(int i=0;i<(int)monsters.size();++i)
 		monsters[i]->Render();
@@ -182,6 +178,7 @@ void Map::Eat( hgeRect *rc )
 {
 	typedef MonsterContainer::iterator mIter;
 	mIter cur = monsters.begin();
+	
 	while(cur != monsters.end()) 
 	{
 		hgeRect* tmprect=(*cur)->GetBoudingBox();
@@ -211,6 +208,7 @@ void Map::Eat( hgeRect *rc )
 		}
 		++cur;
 	}
+	
 	mIter newEnd = std::remove_if(monsters.begin(),monsters.end(),check);
 	monsters.erase(newEnd,monsters.end());
 }
