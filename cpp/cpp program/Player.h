@@ -2,7 +2,7 @@
 #include <hge.h>
 #include "IGameObject.h"
 #include "MovableObject.h"
-class hgeSprite;
+class hgeAnimation;
 class hgeRect;
 class GameScene;
 
@@ -22,7 +22,7 @@ public:
 	void AddScore(int added);
 	void SetPos(float x, float y);
 private:
-	hgeSprite* spr;
+	hgeAnimation* spr;
 	int score;
 	HGE *hge;
 	GameScene *gameScene;
