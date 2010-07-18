@@ -25,7 +25,8 @@ void Monster::Update( float delta )
 	if (weakTime > 0.0f) 
 	{
 		weakTime -= delta;
-		if (weakTime <= 0.0f) {
+		if (weakTime <= 0.0f) 
+		{
 			speed *= 2;
 			weakTime = 0.0f;
 		}
