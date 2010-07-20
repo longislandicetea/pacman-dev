@@ -33,7 +33,7 @@ void Bean::Render()
 hgeRect* Bean::GetBoundingBox()
 {
 	hgeRect *rect = new hgeRect();
-	return spr->GetBoundingBox(posX,posY,rect);
+	return spr->GetBoundingBoxEx(posX,posY,0.0f,0.2f,0.2f,rect);
 }
 
 Bean::~Bean()

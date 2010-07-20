@@ -24,7 +24,7 @@ Map::Map(GameScene *scene)
 	hge = Application::Inst()->Hge();
 	wallSpr = Application::Inst()->resMan()->GetSprite("Wall");
 	Application::Inst()->resMan()->GetAnimation("SuperBean")->Play();
-	sideLen = 15;
+	sideLen = 20;
 	gameScene = scene;
 	fruitTime = 2.0f;
 	fruit = NULL;
@@ -69,17 +69,17 @@ void Map::SetMap( char *filename )
 			}
 			else if(tmpc=='P')
 			{
-				playerX = posx;
-				playerY = posy;
+				playerX = (tmprect->x1 + tmprect->x2)/2.0f;
+				playerY = (tmprect->y1 + tmprect->y2)/2.0f;
 			}
 			else if(tmpc==' ')
 			{
-				Bean* b = new Bean(tmprect->x1,tmprect->y1);
+				Bean* b = new Bean((tmprect->x1 + tmprect->x2)/2.0f,(tmprect->y1 + tmprect->y2)/2.0f);
 				beans.push_back(b);
 			} 
 			else if (tmpc=='S')
 			{
-				Bean* b = new SuperBean(tmprect->x1,tmprect->y1);
+				Bean* b = new SuperBean((tmprect->x1 + tmprect->x2)/2.0f,(tmprect->y1 + tmprect->y2)/2.0f);
 				beans.push_back(b);
 			}
 			else if(tmpc=='M') 
@@ -92,8 +92,8 @@ void Map::SetMap( char *filename )
 			}
 			else if(tmpc=='F')
 			{
-				fruitX = tmprect->x1;
-				fruitY = tmprect->y1;
+				fruitX = (tmprect->x1 + tmprect->x2)/2.0f;
+				fruitY = (tmprect->y1 + tmprect->y2)/2.0f;
 			}
 			delete tmprect;
 		}
