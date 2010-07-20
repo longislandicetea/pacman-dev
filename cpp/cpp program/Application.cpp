@@ -1,6 +1,7 @@
 #include "Application.h"
 #include "IScene.h"
 #include <hge.h>
+#include <cmath>
 #include <cassert>
 //#include "GameScene.h"
 #include "MenuScene.h"
@@ -9,6 +10,7 @@
 Application::Application()
 {
 	Initialize();
+	srand(12345);
 	res = new hgeResourceManager("1.txt");
 	current = new MenuScene();
 	toBeChanged = NULL;

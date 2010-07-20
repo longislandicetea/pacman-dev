@@ -28,4 +28,5 @@ private:
 	GameScene *gameScene;
 	int life;
 	float begX,begY;
+	float rotation;
 };

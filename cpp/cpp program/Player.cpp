@@ -19,21 +19,40 @@ Player::Player(GameScene* scene) : MovableObject(100,0,0)
 	begY = posY;
 	score = 0;
 	life = 3;
+	rotation = 0.0f;
 }
 
 void Player::Render()
 {
-	spr->Render(posX,posY);
+	spr->RenderEx(posX,posY,rotation);
 }
 
 void Player::Update(float delta)
 {
 	float length = delta;
 	float oldx = posX , oldy = posY;
-	if (hge->Input_GetKeyState(HGEK_LEFT)) Left(length);
-	if (hge->Input_GetKeyState(HGEK_RIGHT)) Right(length);
-	if (hge->Input_GetKeyState(HGEK_UP)) Up(length);
-	if (hge->Input_GetKeyState(HGEK_DOWN)) Down(length);
+	
+	if (hge->Input_GetKeyState(HGEK_LEFT)) 
+	{
+		Left(length);
+		rotation = M_PI;
+	}
+	else if (hge->Input_GetKeyState(HGEK_RIGHT)) 
+	{
+		Right(length);
+		rotation = 0.0f;
+	}
+	else if (hge->Input_GetKeyState(HGEK_UP))
+	{
+		Up(length);
+		rotation = M_PI*1.5f;
+	}
+	else if (hge->Input_GetKeyState(HGEK_DOWN)) 
+	{
+		Down(length);
+		rotation = M_PI/2.0f;
+	}
+	
 	hgeRect* rc = this->GetBoundingBox();
 	if (gameScene->GetMap()->IsCollide(*rc)) 
 	{
@@ -53,7 +72,7 @@ Player::~Player()
 hgeRect* Player::GetBoundingBox()
 {
 	hgeRect *rect = new hgeRect();
-	return spr->GetBoundingBox(posX,posY,rect);
+	return spr->GetBoundingBoxEx(posX,posY,0.0f,0.8f,0.8f,rect);
 }
 
 

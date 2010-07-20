@@ -1,6 +1,7 @@
 #pragma once
 #include "MovableObject.h"
 #include "GameScene.h"
+#include "MonsterAI.h"
 #include <hgesprite.h>
 #include <hge.h>
 #include <string>
@@ -18,6 +19,7 @@ public:
 	bool IsWeak() { return weakTime > 0.0f;}
 	hgeRect* GetBoudingBox();
 	const std::string& SprName() const { return sprName; }
+	MonsterAI* GetAI();
 private:
 	float weakTime;
 	hgeSprite *spr;

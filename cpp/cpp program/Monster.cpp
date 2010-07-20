@@ -31,6 +31,7 @@ void Monster::Update( float delta )
 			weakTime = 0.0f;
 		}
 	}
+
 	ai->Action(this,delta);
 }
 
@@ -53,4 +54,9 @@ void Monster::SetWeak( float time )
 	if (weakTime == 0.0f)
 		speed /= 2;
 	weakTime = time;
+}
+
+MonsterAI* Monster::GetAI()
+{
+	return ai;
 }
