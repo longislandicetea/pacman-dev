@@ -11,7 +11,7 @@ class MonsterAI;
 class Monster:public MovableObject
 {
 public:
-	Monster(Map *map , const char *sprname);
+	Monster(Map *map , const char *sprname , float originX , float originY);
 	~Monster();
 	virtual void Update(float delta);
 	virtual void Render();
@@ -20,8 +20,13 @@ public:
 	hgeRect* GetBoudingBox();
 	const std::string& SprName() const { return sprName; }
 	MonsterAI* GetAI();
+	bool IsAlive() {return deathTime == 0;}
+	void SetOrigin();
+	void DeathTime(int val) { deathTime = val; }
 private:
 	float weakTime;
+	float originX,originY;
+	int deathTime;
 	hgeSprite *spr;
 	int score;
 	hgeSprite *newSpr;

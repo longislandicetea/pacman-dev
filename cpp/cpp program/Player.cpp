@@ -18,7 +18,7 @@ Player::Player(GameScene* scene) : MovableObject(100,0,0)
 	begX = posX;
 	begY = posY;
 	score = 0;
-	life = 3;
+	life = 1;
 	rotation = 0.0f;
 }
 

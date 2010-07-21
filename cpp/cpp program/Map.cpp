@@ -17,6 +17,8 @@
 #include "Fruit.h"
 #include "Application.h"
 #include "MenuScene.h"
+#include "EndScene.h"
+
 #pragma warning (disable: 4996)
 
 Map::Map(GameScene *scene)
@@ -26,6 +28,7 @@ Map::Map(GameScene *scene)
 	Application::Inst()->resMan()->GetAnimation("SuperBean")->Play();
 	sideLen = 20;
 	gameScene = scene;
+	endScene = NULL;
 	fruitTime = 2.0f;
 	fruit = NULL;
 }
@@ -84,10 +87,7 @@ void Map::SetMap( char *filename )
 			}
 			else if(tmpc=='M') 
 			{
-				Monster* m = new Monster(this,"Monster");
-				monsterX = tmprect->x1;
-				monsterY = tmprect->y1;
-				m->SetPos(tmprect->x1,tmprect->y1);
+				Monster* m = new Monster(this,"Monster" , tmprect->x1,tmprect->y1);
 				monsters.push_back(m);
 			}
 			else if(tmpc=='F')
@@ -141,17 +141,22 @@ bool check2(const RecoverInfo &info)
 
 void Map::Update( float dt )
 {
-	for(int i=0;i<(int)monsters.size();++i)
-		monsters[i]->Update(dt);
+	if(beans.empty())
+		Application::Inst()->ChangeScene(new EndScene(true));
+	else
+	{
+		for(int i=0;i<(int)monsters.size();++i)
+			monsters[i]->Update(dt);
 
-	for(int i=0;i<(int)beans.size();++i)
-		beans[i]->Update(dt);
+	    for(int i=0;i<(int)beans.size();++i)
+		    beans[i]->Update(dt);
 
-	UpdateSuperBean(dt);
+	    UpdateSuperBean(dt);
 
-	MonsterRevive(dt);
+	    //MonsterRevive(dt);
 
-	SetFruit(dt);
+	    SetFruit(dt);
+	}
 }
 
 void Map::Render()
@@ -169,11 +174,6 @@ void Map::Render()
 		fruit->Render();
 }
 
-bool check(Monster* monster) 
-{
-	return monster == NULL;
-}
-
 void Map::Eat( hgeRect *rc )
 {
 	typedef MonsterContainer::iterator mIter;
@@ -183,7 +183,8 @@ void Map::Eat( hgeRect *rc )
 	{
 		hgeRect* tmprect=(*cur)->GetBoudingBox();
 		Player* tmpplayer=gameScene->GetPlayer();
-		if(rc->Intersect(tmprect))
+		Monster* m = *cur;
+		if(m->IsAlive() && rc->Intersect(tmprect))
 		{
 			if(!((*cur)->IsWeak()))
 			{
@@ -191,11 +192,16 @@ void Map::Eat( hgeRect *rc )
 				tmpplayer->SetPos(tmpplayer->BegX(),tmpplayer->BegY());
 				if(tmpplayer->GetLife()==0)
 				{
-					Application::Inst()->ChangeScene(new MenuScene());
+					Application::Inst()->ChangeScene(new EndScene(false));
 				}
 			}
 			else
 			{
+				m->DeathTime(120);
+				m->SetOrigin();
+				tmpplayer->AddScore(200);
+
+				/*
 				const std::string& tn = (*cur)->SprName();
 				RecoverInfo tmp;
 				tmp.recoverSprName=tn;
@@ -203,21 +209,18 @@ void Map::Eat( hgeRect *rc )
 				inserted.push_back(tmp);
 				delete (*cur);
 				*cur = NULL;
-				tmpplayer->AddScore(200);
+				tmpplayer->AddScore(200);*/
 			}
 		}
 		++cur;
 	}
-	
-	mIter newEnd = std::remove_if(monsters.begin(),monsters.end(),check);
-	monsters.erase(newEnd,monsters.end());
 }
 
 void Map::UpdateSuperBean(float dt)
 {
 	Application::Inst()->resMan()->GetAnimation("SuperBean")->Update(dt);
 }
-
+/*
 void Map::MonsterRevive( float delta )
 {
 	for(int i=0;i<(int)inserted.size();++i)
@@ -236,7 +239,7 @@ void Map::MonsterRevive( float delta )
 
 	std::vector<RecoverInfo>::iterator newEnd = std::remove_if(inserted.begin(),inserted.end(),check2);
 	inserted.erase(newEnd,inserted.end());
-}
+}*/
 
 void Map::SetFruit( float delta )
 {
