@@ -33,7 +33,7 @@ Sprite Bean
 
 Texture wallTexture
 {
- filename=Hydrangeas.jpg
+ filename=newwall.png
  resgroup=1
 }
 
@@ -64,15 +64,60 @@ Animation SuperBean
  resgroup=1
 }
 
-Texture monsterTexture
+Texture blueTexture
 {
  filename=pacman_001.png
  resgroup=1
 }
 
-Sprite Monster
+Sprite blue
 {
- texture=monsterTexture
+ texture=blueTexture
+ rect=0,0,20,20
+ hotspot=0,0
+ blendmode=COLORMUL,ALPHABLEND,NOZWRITE
+ resgroup=1
+}
+
+Texture purpleTexture
+{
+ filename=pacman_002.png
+ resgroup=1
+}
+
+Sprite purple
+{
+ texture=purpleTexture
+ rect=0,0,20,20
+ hotspot=0,0
+ blendmode=COLORMUL,ALPHABLEND,NOZWRITE
+ resgroup=1
+}
+
+Texture yellowTexture
+{
+ filename=pacman_003.png
+ resgroup=1
+}
+
+Sprite yellow
+{
+ texture=yellowTexture
+ rect=0,0,20,20
+ hotspot=0,0
+ blendmode=COLORMUL,ALPHABLEND,NOZWRITE
+ resgroup=1
+}
+
+Texture redTexture
+{
+ filename=pacman_004.png
+ resgroup=1
+}
+
+Sprite red
+{
+ texture=redTexture
  rect=0,0,20,20
  hotspot=0,0
  blendmode=COLORMUL,ALPHABLEND,NOZWRITE
@@ -192,6 +237,21 @@ Sprite Lose
  texture=loseTexture
  rect=0,0,160,138
  hotspot=64,48.5
+ blendmode=COLORMUL,ALPHABLEND,NOZWRITE
+ resgroup=1
+}
+
+Texture helpTexture
+{
+ filename=help.png
+ resgroup=1
+}
+
+Sprite Help
+{
+ texture=helpTexture
+ rect=0,0,800,600
+ hotspot=0,0
  blendmode=COLORMUL,ALPHABLEND,NOZWRITE
  resgroup=1
 }

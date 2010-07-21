@@ -4,7 +4,7 @@
 #include <hgeresource.h>
 #include "MonsterAI.h"
 
-Monster::Monster(Map *map , const char *sprname , float _originX , float _originY):MovableObject(100,0,0)
+Monster::Monster(Map *map , const char *sprname , float _originX , float _originY):MovableObject(80,0,0)
 {
 	hge = Application::Inst()->Hge();
 	spr = Application::Inst()->resMan()->GetSprite(sprname);

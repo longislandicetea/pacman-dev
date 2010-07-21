@@ -6,7 +6,7 @@
 #include "GameScene.h"
 #include "Map.h"
 
-Player::Player(GameScene* scene) : MovableObject(100,0,0)
+Player::Player(GameScene* scene) : MovableObject(80,0,0)
 {
 
 	hge = Application::Inst()->Hge();
@@ -18,7 +18,7 @@ Player::Player(GameScene* scene) : MovableObject(100,0,0)
 	begX = posX;
 	begY = posY;
 	score = 0;
-	life = 1;
+	life = 3;
 	rotation = 0.0f;
 }
 

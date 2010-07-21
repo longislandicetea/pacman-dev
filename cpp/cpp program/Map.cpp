@@ -30,6 +30,7 @@ Map::Map(GameScene *scene)
 	gameScene = scene;
 	endScene = NULL;
 	fruitTime = 2.0f;
+	playerTime = 0.0f;
 	fruit = NULL;
 }
 
@@ -58,6 +59,9 @@ void Map::SetMap( char *filename )
 	FILE* fin = fopen(filename,"r");
 	fscanf(fin,"%d%d\n",&length,&width);
 	char tmpc;
+	char* monsterNo[4] = {"blue","purple","yellow","red"};
+	int no = 0;
+	
 	for(int i=0;i<length;++i)
 	{
 		for(int j=0;j<width;++j)
@@ -87,7 +91,7 @@ void Map::SetMap( char *filename )
 			}
 			else if(tmpc=='M') 
 			{
-				Monster* m = new Monster(this,"Monster" , tmprect->x1,tmprect->y1);
+				Monster* m = new Monster(this,monsterNo[no++], tmprect->x1,tmprect->y1);
 				monsters.push_back(m);
 			}
 			else if(tmpc=='F')
@@ -121,6 +125,7 @@ void Map::CheckAndEat( hgeRect *rc )
 		}
 		delete brc;
 	}
+	
 	if (fruit!=NULL) 
 	{
 		hgeRect *frc = fruit->GetBoundingBox();
@@ -143,6 +148,7 @@ void Map::Update( float dt )
 {
 	if(beans.empty())
 		Application::Inst()->ChangeScene(new EndScene(true));
+	
 	else
 	{
 		for(int i=0;i<(int)monsters.size();++i)
@@ -153,10 +159,9 @@ void Map::Update( float dt )
 
 	    UpdateSuperBean(dt);
 
-	    //MonsterRevive(dt);
-
 	    SetFruit(dt);
 	}
+	playerTime -= dt;
 }
 
 void Map::Render()
@@ -181,9 +186,10 @@ void Map::Eat( hgeRect *rc )
 	
 	while(cur != monsters.end()) 
 	{
-		hgeRect* tmprect=(*cur)->GetBoudingBox();
-		Player* tmpplayer=gameScene->GetPlayer();
+		hgeRect* tmprect = (*cur)->GetBoudingBox();
+		Player* tmpplayer = gameScene->GetPlayer();
 		Monster* m = *cur;
+		
 		if(m->IsAlive() && rc->Intersect(tmprect))
 		{
 			if(!((*cur)->IsWeak()))
@@ -191,25 +197,17 @@ void Map::Eat( hgeRect *rc )
 				tmpplayer->SetLife();
 				tmpplayer->SetPos(tmpplayer->BegX(),tmpplayer->BegY());
 				if(tmpplayer->GetLife()==0)
-				{
 					Application::Inst()->ChangeScene(new EndScene(false));
-				}
+				playerTime = 2.0f;
 			}
 			else
 			{
-				m->DeathTime(120);
-				m->SetOrigin();
-				tmpplayer->AddScore(200);
-
-				/*
-				const std::string& tn = (*cur)->SprName();
-				RecoverInfo tmp;
-				tmp.recoverSprName=tn;
-				tmp.recoverMinute=1.0f;
-				inserted.push_back(tmp);
-				delete (*cur);
-				*cur = NULL;
-				tmpplayer->AddScore(200);*/
+				if(playerTime<0.0f)
+				{
+					m->DeathTime(120);
+				    m->SetOrigin();
+				    tmpplayer->AddScore(200);
+				}
 			}
 		}
 		++cur;
@@ -220,26 +218,6 @@ void Map::UpdateSuperBean(float dt)
 {
 	Application::Inst()->resMan()->GetAnimation("SuperBean")->Update(dt);
 }
-/*
-void Map::MonsterRevive( float delta )
-{
-	for(int i=0;i<(int)inserted.size();++i)
-		inserted[i].recoverMinute-=delta;
-
-	for (int i = 0 ;i<(int)inserted.size();++i) 
-	{
-		if(inserted[i].recoverMinute<=0.0f) 
-		{
-			Monster *m = new Monster(this,inserted[i].recoverSprName.c_str());
-			m->SetPos(monsterX,monsterY);
-			monsters.push_back(m);
-			inserted[i].recoverMinute = -1000.0f;
-		}
-	}
-
-	std::vector<RecoverInfo>::iterator newEnd = std::remove_if(inserted.begin(),inserted.end(),check2);
-	inserted.erase(newEnd,inserted.end());
-}*/
 
 void Map::SetFruit( float delta )
 {

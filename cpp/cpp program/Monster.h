@@ -22,7 +22,7 @@ public:
 	MonsterAI* GetAI();
 	bool IsAlive() {return deathTime == 0;}
 	void SetOrigin();
-	void DeathTime(int val) { deathTime = val; }
+	void DeathTime(int val) { deathTime = val; weakTime = 0.0f;}
 private:
 	float weakTime;
 	float originX,originY;

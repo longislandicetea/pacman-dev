@@ -14,6 +14,7 @@ GameScene::GameScene()
 	player = new Player(this);
 	fnt = Application::Inst()->resMan()->GetFont("ScoreAndLife");
 	pauseFnt = Application::Inst()->resMan()->GetFont("ScoreAndLife");
+	offset = 60;
 }
 
 bool GameScene::FrameFunc()
@@ -52,4 +53,9 @@ Map* GameScene::GetMap()
 Player* GameScene::GetPlayer()
 {
 	return player;
+}
+
+int GameScene::GetOffset()
+{
+	return offset;
 }

@@ -2,6 +2,7 @@
 #include "Application.h"
 #include "MenuItem.h"
 #include "GameScene.h"
+#include "HelpScene.h"
 
 MenuScene::MenuScene()
 {
@@ -13,8 +14,8 @@ MenuScene::MenuScene()
 	fnt=manager->GetFont("Menu");
 	guiMenu=new hgeGUI();
 	guiMenu->AddCtrl(new hgeGUIMenuItem(1,fnt,snd,400,400,0.0f,"Start"));
-	guiMenu->AddCtrl(new hgeGUIMenuItem(3,fnt,snd,400,450,0.2f,"Instructions"));
-	guiMenu->AddCtrl(new hgeGUIMenuItem(5,fnt,snd,400,500,0.4f,"Exit"));
+	guiMenu->AddCtrl(new hgeGUIMenuItem(2,fnt,snd,400,450,0.2f,"Help"));
+	guiMenu->AddCtrl(new hgeGUIMenuItem(3,fnt,snd,400,500,0.4f,"Exit"));
 
 	guiMenu->SetNavMode(HGEGUI_UPDOWN | HGEGUI_CYCLED);
 	guiMenu->SetCursor(spr);
@@ -29,7 +30,7 @@ bool MenuScene::FrameFunc()
 	static int lastid=0;
 	if(hge->Input_GetKeyState(HGEK_ESCAPE)) 
 	{ 
-		lastid=5; 
+		lastid=3; 
 		guiMenu->Leave(); 
 	}
 	id=guiMenu->Update(dt);
@@ -41,12 +42,9 @@ bool MenuScene::FrameFunc()
 			Application::Inst()->ChangeScene(new GameScene());
 			break;
 		case 2:
-		case 3:
-		case 4:
-			guiMenu->SetFocus(1);
-			guiMenu->Enter();
+			Application::Inst()->ChangeScene(new HelpScene());
 			break;
-		case 5: return true;
+		case 3: return true;
 		}
 	}
 	else if(id) 

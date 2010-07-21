@@ -33,19 +33,18 @@ public:
 	void UpdateSuperBean(float dt);
 	float PlayerX() const { return playerX; }
 	float PlayerY() const { return playerY;}
-	//void MonsterRevive(float delta);
 	void SetFruit(float delta);
 private:
 	typedef std::vector<Monster*> MonsterContainer;
 	std::vector<hgeRect*> walls;
 	std::vector<Bean*> beans;
 	MonsterContainer monsters;
-	//std::vector<RecoverInfo> inserted;
 	float playerX,playerY;
+	float fruitX,fruitY;
 	int length,width;
 	float sideLen;
 	float fruitTime;
-	float fruitX,fruitY;
+	float playerTime;
 	Fruit *fruit;
 	hgeSprite *wallSpr;
 	GameScene *gameScene;
