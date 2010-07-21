@@ -30,7 +30,6 @@ Map::Map(GameScene *scene)
 	gameScene = scene;
 	endScene = NULL;
 	fruitTime = 2.0f;
-	playerTime = 0.0f;
 	fruit = NULL;
 }
 
@@ -161,7 +160,6 @@ void Map::Update( float dt )
 
 	    SetFruit(dt);
 	}
-	playerTime -= dt;
 }
 
 void Map::Render()
@@ -194,20 +192,20 @@ void Map::Eat( hgeRect *rc )
 		{
 			if(!((*cur)->IsWeak()))
 			{
-				tmpplayer->SetLife();
-				tmpplayer->SetPos(tmpplayer->BegX(),tmpplayer->BegY());
-				if(tmpplayer->GetLife()==0)
-					Application::Inst()->ChangeScene(new EndScene(false));
-				playerTime = 2.0f;
+				if (tmpplayer->CanEat()) 
+				{
+					tmpplayer->Revive();
+					tmpplayer->SetLife();
+					tmpplayer->SetPos(tmpplayer->BegX(),tmpplayer->BegY());
+					if(tmpplayer->GetLife()==0)
+						Application::Inst()->ChangeScene(new EndScene(false));
+				}
 			}
 			else
 			{
-				if(playerTime<0.0f)
-				{
-					m->DeathTime(120);
-				    m->SetOrigin();
-				    tmpplayer->AddScore(200);
-				}
+				m->DeathTime(120);
+				m->SetOrigin();
+				tmpplayer->AddScore(200);
 			}
 		}
 		++cur;

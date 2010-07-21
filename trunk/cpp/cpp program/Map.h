@@ -44,7 +44,6 @@ private:
 	int length,width;
 	float sideLen;
 	float fruitTime;
-	float playerTime;
 	Fruit *fruit;
 	hgeSprite *wallSpr;
 	GameScene *gameScene;
