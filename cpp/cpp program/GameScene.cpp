@@ -35,7 +35,7 @@ bool GameScene::RenderFunc()
 	gameMap->Render();
 	fnt->printf(30,30,HGETEXT_LEFT,"Score:%d\nLife:%d",GetPlayer()->GetScore(),GetPlayer()->GetLife());
 	if(paused)
-		pauseFnt->printf(300,300,HGETEXT_CENTER,"pause");
+		pauseFnt->printf(340,240,HGETEXT_CENTER,"pause");
 	return false;
 }
 

@@ -18,6 +18,8 @@ public:
 	float BegY();
 	int GetLife();
 	void SetLife();
+	void Revive();
+	bool CanEat();
 	int GetScore();
 	void AddScore(int added);
 	void SetPos(float x, float y);
@@ -27,6 +29,7 @@ private:
 	HGE *hge;
 	GameScene *gameScene;
 	int life;
+	int reviveTime;
 	float begX,begY;
 	float rotation;
 };

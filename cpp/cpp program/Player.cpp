@@ -19,6 +19,7 @@ Player::Player(GameScene* scene) : MovableObject(80,0,0)
 	begY = posY;
 	score = 0;
 	life = 3;
+	reviveTime = 0;
 	rotation = 0.0f;
 }
 
@@ -29,6 +30,8 @@ void Player::Render()
 
 void Player::Update(float delta)
 {
+	if (reviveTime > 0)
+		--reviveTime;
 	float length = delta;
 	float oldx = posX , oldy = posY;
 	
@@ -111,4 +114,14 @@ float Player::BegY()
 int Player::GetScore()
 {
 	return score;
+}
+
+void Player::Revive()
+{
+	reviveTime = 120;
+}
+
+bool Player::CanEat()
+{
+	return reviveTime == 0;
 }
