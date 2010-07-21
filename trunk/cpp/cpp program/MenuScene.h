@@ -18,7 +18,7 @@ private:
 	HGE *hge;
 	HEFFECT snd;
 	HTEXTURE tex;
-	hgeQuad	 quad;
+	hgeSprite* background;
 	hgeSprite *spr;
 	hgeFont *fnt;
 	hgeResourceManager *manager;

@@ -7,18 +7,14 @@ MenuScene::MenuScene()
 {
 	hge=Application::Inst()->Hge();
 	manager=Application::Inst()->resMan();
-	quad.tex=manager->GetTexture("Background");
+	background = manager->GetSprite("Background");
 	snd=manager->GetEffect("CursorSound");
-	quad.blend=BLEND_ALPHABLEND | BLEND_COLORMUL | BLEND_NOZWRITE;
 	spr=manager->GetSprite("Cursor");
-	fnt=manager->GetFont("MenuFont");
-	
+	fnt=manager->GetFont("Menu");
 	guiMenu=new hgeGUI();
-	guiMenu->AddCtrl(new hgeGUIMenuItem(1,fnt,snd,400,200,0.0f,"Play"));
-	guiMenu->AddCtrl(new hgeGUIMenuItem(2,fnt,snd,400,240,0.1f,"Options"));
-	guiMenu->AddCtrl(new hgeGUIMenuItem(3,fnt,snd,400,280,0.2f,"Instructions"));
-	guiMenu->AddCtrl(new hgeGUIMenuItem(4,fnt,snd,400,320,0.3f,"Credits"));
-	guiMenu->AddCtrl(new hgeGUIMenuItem(5,fnt,snd,400,360,0.4f,"Exit"));
+	guiMenu->AddCtrl(new hgeGUIMenuItem(1,fnt,snd,400,400,0.0f,"Start"));
+	guiMenu->AddCtrl(new hgeGUIMenuItem(3,fnt,snd,400,450,0.2f,"Instructions"));
+	guiMenu->AddCtrl(new hgeGUIMenuItem(5,fnt,snd,400,500,0.4f,"Exit"));
 
 	guiMenu->SetNavMode(HGEGUI_UPDOWN | HGEGUI_CYCLED);
 	guiMenu->SetCursor(spr);
@@ -63,7 +59,7 @@ bool MenuScene::FrameFunc()
 
 bool MenuScene::RenderFunc()
 {
-	hge->Gfx_RenderQuad(&quad);
+	background->Render(0,0);
 	guiMenu->Render();
 	return false;
 }

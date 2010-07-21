@@ -48,7 +48,7 @@ Sprite Wall
 
 Texture superbeanTexture
 {
- filename=Winter.jpg
+ filename=superbean.png
  resgroup=1
 }
 
@@ -66,7 +66,7 @@ Animation SuperBean
 
 Texture monsterTexture
 {
- filename=m_green.png
+ filename=pacman_001.png
  resgroup=1
 }
 
@@ -101,6 +101,20 @@ Font ScoreAndLife
  resgroup=1
 }
 
+Font Menu
+{
+ filename=menufont.fnt
+ tracking=1.0
+ resgroup=1
+}
+
+Font End
+{
+ filename=font1.fnt
+ tracking=1.0
+ resgroup=1
+}
+
 Texture cursorTexture
 {
  filename=cursor.png
@@ -118,14 +132,14 @@ Sprite Cursor
 
 Texture backgroundTexture
 {
- filename=bg.png
+ filename=background.png
  resgroup=1
 }
 
 Sprite Background
 {
  texture=backgroundTexture
- rect=0,0,400,400
+ rect=0,0,800,600
  hotspot=0,0
  blendmode=COLORMUL,ALPHABLEND,NOZWRITE
  resgroup=1
@@ -137,16 +151,9 @@ Sound CursorSound
  resgroup=1
 }
 
-Font MenuFont
-{
- filename=font2.fnt
- tracking=1.0
- resgroup=1
-}
-
 Texture newMonsterTexture
 {
- filename=medium.jpg
+ filename=weakm.png
  resgroup=1
 }
 
@@ -155,6 +162,36 @@ Sprite NewMonster
  texture=newMonsterTexture
  rect=0,0,20,20
  hotspot=0,0
+ blendmode=COLORMUL,ALPHABLEND,NOZWRITE
+ resgroup=1
+}
+
+Texture winTexture
+{
+ filename=win.png
+ resgroup=1
+}
+
+Sprite Win
+{
+ texture=winTexture
+ rect=0,0,160,163
+ hotspot=75,75.5
+ blendmode=COLORMUL,ALPHABLEND,NOZWRITE
+ resgroup=1
+}
+
+Texture loseTexture
+{
+ filename=lose.jpg
+ resgroup=1
+}
+
+Sprite Lose
+{
+ texture=loseTexture
+ rect=0,0,160,138
+ hotspot=64,48.5
  blendmode=COLORMUL,ALPHABLEND,NOZWRITE
  resgroup=1
 }

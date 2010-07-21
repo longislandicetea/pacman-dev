@@ -183,6 +183,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\EndScene.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\Fruit.cpp"
 				>
 			</File>
@@ -242,6 +246,10 @@
 			</File>
 			<File
 				RelativePath=".\Bean.h"
+				>
+			</File>
+			<File
+				RelativePath=".\EndScene.h"
 				>
 			</File>
 			<File

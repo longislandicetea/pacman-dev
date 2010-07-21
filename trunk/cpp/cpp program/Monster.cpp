@@ -4,7 +4,7 @@
 #include <hgeresource.h>
 #include "MonsterAI.h"
 
-Monster::Monster(Map *map,const char* sprname):MovableObject(100,0,0)
+Monster::Monster(Map *map , const char *sprname , float _originX , float _originY):MovableObject(100,0,0)
 {
 	hge = Application::Inst()->Hge();
 	spr = Application::Inst()->resMan()->GetSprite(sprname);
@@ -13,6 +13,9 @@ Monster::Monster(Map *map,const char* sprname):MovableObject(100,0,0)
 	sprName = sprname;
 	score = 200;
 	weakTime = 0.0f;
+	deathTime = 0;
+	posX = originX = _originX;
+	posY = originY = _originY;
 }
 
 Monster::~Monster()
@@ -22,6 +25,11 @@ Monster::~Monster()
 
 void Monster::Update( float delta )
 {
+	if (deathTime > 0) {
+		--deathTime;
+		return;
+	}
+
 	if (weakTime > 0.0f) 
 	{
 		weakTime -= delta;
@@ -37,6 +45,9 @@ void Monster::Update( float delta )
 
 void Monster::Render()
 {
+	if (deathTime > 0)
+		return;
+
 	if (weakTime > 0.0f)
 		newSpr->Render(posX , posY);
 	else 
@@ -46,7 +57,7 @@ void Monster::Render()
 hgeRect* Monster::GetBoudingBox()
 {
 	hgeRect *rect = new hgeRect();
-	return spr->GetBoundingBox(posX,posY,rect);
+	return spr->GetBoundingBoxEx(posX,posY,0.0f,0.8f,0.8f,rect);
 }
 
 void Monster::SetWeak( float time )
@@ -59,4 +70,10 @@ void Monster::SetWeak( float time )
 MonsterAI* Monster::GetAI()
 {
 	return ai;
+}
+
+void Monster::SetOrigin()
+{
+	posX = originX;
+	posY = originY;
 }

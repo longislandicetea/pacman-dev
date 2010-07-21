@@ -9,12 +9,14 @@
 class Bean;
 class Monster;
 class GameScene;
+class EndScene;
 
 struct RecoverInfo
 {
 	std::string recoverSprName;
 	float recoverMinute;
 };
+
 class Fruit;
 
 class Map : IGameObject
@@ -31,22 +33,22 @@ public:
 	void UpdateSuperBean(float dt);
 	float PlayerX() const { return playerX; }
 	float PlayerY() const { return playerY;}
-	void MonsterRevive(float delta);
+	//void MonsterRevive(float delta);
 	void SetFruit(float delta);
 private:
 	typedef std::vector<Monster*> MonsterContainer;
 	std::vector<hgeRect*> walls;
 	std::vector<Bean*> beans;
 	MonsterContainer monsters;
-	std::vector<RecoverInfo> inserted;
+	//std::vector<RecoverInfo> inserted;
 	float playerX,playerY;
 	int length,width;
-	float monsterX , monsterY;
 	float sideLen;
 	float fruitTime;
 	float fruitX,fruitY;
 	Fruit *fruit;
 	hgeSprite *wallSpr;
 	GameScene *gameScene;
+	EndScene * endScene;
 	HGE *hge;
 };
