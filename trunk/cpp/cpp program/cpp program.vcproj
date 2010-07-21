@@ -195,6 +195,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\HelpScene.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\IScene.cpp"
 				>
 			</File>
@@ -258,6 +262,10 @@
 			</File>
 			<File
 				RelativePath=".\GameScene.h"
+				>
+			</File>
+			<File
+				RelativePath=".\HelpScene.h"
 				>
 			</File>
 			<File

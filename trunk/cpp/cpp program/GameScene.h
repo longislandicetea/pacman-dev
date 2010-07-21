@@ -15,6 +15,7 @@ public:
 	virtual bool RenderFunc();
 	Map* GetMap();
 	Player* GetPlayer();
+	int GetOffset();
 	~GameScene();
 private:
 	bool paused;
@@ -22,4 +23,5 @@ private:
 	Map *gameMap;
 	hgeFont *fnt;
 	hgeFont *pauseFnt;
+	int offset;
 };
