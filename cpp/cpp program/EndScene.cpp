@@ -7,7 +7,7 @@ EndScene::EndScene(bool _win)
 {
 	span = 180;
 	win = _win;
-	if(!win)
+	if(win)
 		spr = Application::Inst()->resMan()->GetSprite("Win");
 	else
 		spr = Application::Inst()->resMan()->GetSprite("Lose");
