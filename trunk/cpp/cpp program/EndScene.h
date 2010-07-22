@@ -10,7 +10,6 @@ public:
 	virtual bool FrameFunc();
 	virtual bool RenderFunc();
 private:
-	hgeFont *fnt;
 	hgeSprite *spr;
 	int span;
 	bool win;

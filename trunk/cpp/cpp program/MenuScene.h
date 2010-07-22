@@ -17,7 +17,6 @@ private:
 	hgeGUI *guiMenu;
 	HGE *hge;
 	HEFFECT snd;
-	HTEXTURE tex;
 	hgeSprite* background;
 	hgeSprite *spr;
 	hgeFont *fnt;

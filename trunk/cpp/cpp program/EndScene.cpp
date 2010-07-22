@@ -5,10 +5,9 @@
 
 EndScene::EndScene(bool _win)
 {
-	fnt = Application::Inst()->resMan()->GetFont("End");
-	span = 240;
+	span = 180;
 	win = _win;
-	if(win)
+	if(!win)
 		spr = Application::Inst()->resMan()->GetSprite("Win");
 	else
 		spr = Application::Inst()->resMan()->GetSprite("Lose");
@@ -24,12 +23,6 @@ bool EndScene::FrameFunc()
 
 bool EndScene::RenderFunc()
 {
-	spr->Render(250,300);
-	
-	if(win)
-		fnt->printf(440,260,HGETEXT_CENTER,"Congratulations!\n\nYou win!");
-	else
-		fnt->printf(460,300,HGETEXT_CENTER,"Game Over");
-	
+	spr->Render(0,0);
 	return false;
 }

@@ -9,13 +9,13 @@ MenuScene::MenuScene()
 	hge=Application::Inst()->Hge();
 	manager=Application::Inst()->resMan();
 	background = manager->GetSprite("Background");
-	snd=manager->GetEffect("CursorSound");
+	snd=manager->GetEffect("Cursor");
 	spr=manager->GetSprite("Cursor");
 	fnt=manager->GetFont("Menu");
 	guiMenu=new hgeGUI();
-	guiMenu->AddCtrl(new hgeGUIMenuItem(1,fnt,snd,400,400,0.0f,"Start"));
-	guiMenu->AddCtrl(new hgeGUIMenuItem(2,fnt,snd,400,450,0.2f,"Help"));
-	guiMenu->AddCtrl(new hgeGUIMenuItem(3,fnt,snd,400,500,0.4f,"Exit"));
+	guiMenu->AddCtrl(new hgeGUIMenuItem(1,fnt,snd,320,300,0.0f,"Start"));
+	guiMenu->AddCtrl(new hgeGUIMenuItem(2,fnt,snd,320,350,0.2f,"Help"));
+	guiMenu->AddCtrl(new hgeGUIMenuItem(3,fnt,snd,320,400,0.4f,"Exit"));
 
 	guiMenu->SetNavMode(HGEGUI_UPDOWN | HGEGUI_CYCLED);
 	guiMenu->SetCursor(spr);
