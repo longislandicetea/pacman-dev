@@ -33,7 +33,7 @@ Sprite Bean
 
 Texture wallTexture
 {
- filename=newwall.png
+ filename=wall.png
  resgroup=1
 }
 
@@ -153,9 +153,9 @@ Font Menu
  resgroup=1
 }
 
-Font End
+Font MonsterScore
 {
- filename=font1.fnt
+ filename=scorefnt.fnt
  tracking=1.0
  resgroup=1
 }
@@ -169,7 +169,7 @@ Texture cursorTexture
 Sprite Cursor
 {
  texture=cursorTexture
- rect=0,0,8,8
+ rect=0,0,32,32
  hotspot=0,0
  blendmode=COLORMUL,ALPHABLEND,NOZWRITE
  resgroup=1
@@ -184,15 +184,9 @@ Texture backgroundTexture
 Sprite Background
 {
  texture=backgroundTexture
- rect=0,0,800,600
+ rect=0,0,680,480
  hotspot=0,0
  blendmode=COLORMUL,ALPHABLEND,NOZWRITE
- resgroup=1
-}
-
-Sound CursorSound
-{
- filename=menu.wav
  resgroup=1
 }
 
@@ -220,23 +214,23 @@ Texture winTexture
 Sprite Win
 {
  texture=winTexture
- rect=0,0,160,163
- hotspot=75,75.5
+ rect=0,0,680,480
+ hotspot=0,0
  blendmode=COLORMUL,ALPHABLEND,NOZWRITE
  resgroup=1
 }
 
 Texture loseTexture
 {
- filename=lose.jpg
+ filename=lose.png
  resgroup=1
 }
 
 Sprite Lose
 {
  texture=loseTexture
- rect=0,0,160,138
- hotspot=64,48.5
+ rect=0,0,680,480
+ hotspot=0,0
  blendmode=COLORMUL,ALPHABLEND,NOZWRITE
  resgroup=1
 }
@@ -250,8 +244,26 @@ Texture helpTexture
 Sprite Help
 {
  texture=helpTexture
- rect=0,0,800,600
+ rect=0,0,680,480
  hotspot=0,0
  blendmode=COLORMUL,ALPHABLEND,NOZWRITE
+ resgroup=1
+}
+
+Sound Cursor
+{
+ filename=cursor.mp3
+ resgroup=1
+}
+
+Sound Eat
+{
+ filename=eat.mp3
+ resgroup=1
+}
+
+Sound Lose
+{
+ filename=lose.mp3
  resgroup=1
 }

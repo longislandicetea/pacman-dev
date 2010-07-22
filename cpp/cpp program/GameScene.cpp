@@ -14,7 +14,7 @@ GameScene::GameScene()
 	player = new Player(this);
 	fnt = Application::Inst()->resMan()->GetFont("ScoreAndLife");
 	pauseFnt = Application::Inst()->resMan()->GetFont("ScoreAndLife");
-	offset = 60;
+	eatSnd = Application::Inst()->resMan()->GetEffect("Eat");
 }
 
 bool GameScene::FrameFunc()
@@ -55,7 +55,7 @@ Player* GameScene::GetPlayer()
 	return player;
 }
 
-int GameScene::GetOffset()
+HEFFECT* GameScene::GetEatSnd()
 {
-	return offset;
+	return &eatSnd;
 }

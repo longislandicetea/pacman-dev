@@ -2,6 +2,7 @@
 #include <hgerect.h>
 #include <hge.h>
 #include <hgesprite.h>
+#include <hgefont.h>
 #include <vector>
 #include <string>
 #include "IGameObject.h"
@@ -47,6 +48,7 @@ private:
 	Fruit *fruit;
 	hgeSprite *wallSpr;
 	GameScene *gameScene;
-	EndScene * endScene;
+	EndScene *endScene;
+	hgeFont *fnt;
 	HGE *hge;
 };

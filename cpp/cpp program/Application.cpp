@@ -71,8 +71,10 @@ void Application::Initialize()
 	hge->System_SetState(HGE_LOGFILE,"log.txt");
 	hge->System_SetState(HGE_TITLE, "Pacman");
 	hge->System_SetState(HGE_WINDOWED, true);
-	hge->System_SetState(HGE_USESOUND, false);
+	hge->System_SetState(HGE_USESOUND, true);
 	hge->System_SetState(HGE_SHOWSPLASH,false);
+	hge->System_SetState(HGE_SCREENWIDTH,680);
+	hge->System_SetState(HGE_SCREENHEIGHT,480);
 	hge->System_SetState(HGE_FPS,60);
 	assert(hge->System_Initiate());
 }

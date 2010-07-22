@@ -13,7 +13,7 @@ HelpScene::HelpScene()
 	spr=manager->GetSprite("Cursor");
 	fnt=manager->GetFont("Menu");
 	guiHelp=new hgeGUI();
-	guiHelp->AddCtrl(new hgeGUIMenuItem(1,fnt,snd,630,480,0.0f,"Back"));
+	guiHelp->AddCtrl(new hgeGUIMenuItem(1,fnt,snd,520,400,0.0f,"Back"));
 	guiHelp->SetNavMode(HGEGUI_UPDOWN | HGEGUI_CYCLED);
 	guiHelp->SetCursor(spr);
 	guiHelp->SetFocus(1);

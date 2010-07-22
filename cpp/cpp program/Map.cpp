@@ -25,6 +25,7 @@ Map::Map(GameScene *scene)
 {
 	hge = Application::Inst()->Hge();
 	wallSpr = Application::Inst()->resMan()->GetSprite("Wall");
+	fnt = Application::Inst()->resMan()->GetFont("MonsterScore");
 	Application::Inst()->resMan()->GetAnimation("SuperBean")->Play();
 	sideLen = 20;
 	gameScene = scene;
@@ -111,10 +112,11 @@ void Map::CheckAndEat( hgeRect *rc )
 		hgeRect* brc = beans[i]->GetBoundingBox();
 		if(brc->Intersect(rc))
 		{
+			hge->Effect_Play(*(gameScene->GetEatSnd()));
 			gameScene->GetPlayer()->AddScore(beans[i]->GetScore());
 			if (typeid(*beans[i])==typeid(SuperBean)) 
 			{
-				for(int j =0;j<(int)monsters.size();++j)
+				for(int j = 0;j<(int)monsters.size();++j)
 				{
 					monsters[j]->SetWeak(((SuperBean*)beans[i])->Time());
 				}

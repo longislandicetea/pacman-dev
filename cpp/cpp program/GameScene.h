@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <hgefont.h>
+#include <hge.h>
 #include "IScene.h"
 
 class Map;
@@ -15,6 +16,7 @@ public:
 	virtual bool RenderFunc();
 	Map* GetMap();
 	Player* GetPlayer();
+	HEFFECT* GetEatSnd();
 	int GetOffset();
 	~GameScene();
 private:
@@ -23,5 +25,5 @@ private:
 	Map *gameMap;
 	hgeFont *fnt;
 	hgeFont *pauseFnt;
-	int offset;
+	HEFFECT eatSnd;
 };
