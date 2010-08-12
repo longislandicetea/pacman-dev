@@ -11,3 +11,8 @@ SuperBean::SuperBean( float x , float y ) : Bean(x,y,50,Application::Inst()->res
 SuperBean::~SuperBean()
 {
 }
+
+float SuperBean::Time() const
+{
+	return time;
+}

@@ -7,7 +7,7 @@ class SuperBean : public Bean
 public:
 	SuperBean(float x , float y);
 	virtual ~SuperBean();
-	float Time() const { return time; }
+	float Time() const;
 private:
 	float time;
 };

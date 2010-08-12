@@ -1,7 +1,8 @@
 #pragma once
-#include <hge.h>
 #include "IGameObject.h"
 #include "MovableObject.h"
+
+class HGE;
 class hgeAnimation;
 class hgeRect;
 class GameScene;
@@ -13,18 +14,18 @@ public:
 	~Player();
 	virtual void Update(float delta);
 	virtual void Render();
+	float BegX() const;
+	float BegY() const;
+	bool CanEat() const;
 	hgeRect* GetBoundingBox();
-	float BegX();
-	float BegY();
-	int GetLife();
 	void SetLife();
+	void SetPos(float x, float y);
 	void Revive();
-	bool CanEat();
+	int GetLife();
 	int GetScore();
 	void AddScore(int added);
-	void SetPos(float x, float y);
 private:
-	hgeAnimation* spr;
+	hgeAnimation *spr;
 	int score;
 	HGE *hge;
 	GameScene *gameScene;

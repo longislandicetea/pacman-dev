@@ -101,12 +101,12 @@ void Player::SetPos( float x, float y )
 	posY = y;
 }
 
-float Player::BegX()
+float Player::BegX() const
 {
 	return begX;
 }
 
-float Player::BegY()
+float Player::BegY() const
 {
 	return begY;
 }
@@ -121,7 +121,7 @@ void Player::Revive()
 	reviveTime = 120;
 }
 
-bool Player::CanEat()
+bool Player::CanEat() const
 {
 	return reviveTime == 0;
 }

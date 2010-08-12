@@ -1,7 +1,9 @@
 #pragma once
 #include "IGameObject.h"
-#include <hge.h>
-#include <hgesprite.h>
+
+class HGE;
+class hgeSprite;
+class hgeRect;
 
 class Bean:public IGameObject
 {
@@ -14,7 +16,7 @@ public:
 	hgeSprite* GetSpr();
 	hgeRect* GetBoundingBox();
 protected:
-	Bean(float x , float y , int score , hgeSprite* spr);
+	Bean(float x , float y , int score , hgeSprite *spr);
 	int score;
 private:
 	void Init(float  x , float y);

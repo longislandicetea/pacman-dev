@@ -1,7 +1,7 @@
 #pragma once
 #include "IScene.h"
-#include <hgefont.h>
-#include <hgesprite.h>
+
+class hgeSprite;
 
 class EndScene : public IScene
 {
