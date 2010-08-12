@@ -1,6 +1,7 @@
 #include "GameScene.h"
 #include "Application.h"
 #include "Map.h"
+#include "MenuScene.h"
 #include <hgeresource.h>
 #include <hgefont.h>
 #include "Player.h"
@@ -23,6 +24,8 @@ bool GameScene::FrameFunc()
 		paused = !paused;
 	if (paused)
 		return false;
+	if(Application::Inst()->Hge()->Input_KeyUp(HGEK_ESCAPE))
+		Application::Inst()->ChangeScene(new MenuScene);
 	float dt = Application::Inst()->Hge()->Timer_GetDelta();
 	player->Update(dt);
 	gameMap->Update(dt);

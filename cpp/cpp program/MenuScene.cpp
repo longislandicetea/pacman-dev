@@ -6,10 +6,12 @@
 
 MenuScene::MenuScene()
 {
-	hge=Application::Inst()->Hge();
-	manager=Application::Inst()->resMan();
+	hge = Application::Inst()->Hge();
+	manager = Application::Inst()->resMan();
 	background = manager->GetSprite("Background");
-	snd=manager->GetEffect("Cursor");
+	snd = manager->GetEffect("Cursor");
+	themeMusic = manager->GetMusic("ThemeMusic");
+	//hge->Music_Play(themeMusic,true);
 	spr=manager->GetSprite("Cursor");
 	fnt=manager->GetFont("Menu");
 	guiMenu=new hgeGUI();
@@ -24,6 +26,7 @@ MenuScene::MenuScene()
 
 bool MenuScene::FrameFunc()
 {
+	hge->Music_Play(themeMusic,true);
 	float dt=hge->Timer_GetDelta();
 	int id;
 	static int lastid=0;
