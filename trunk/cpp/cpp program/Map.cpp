@@ -44,7 +44,7 @@ Map::~Map()
 		delete monsters[i];
 }
 
-bool Map::IsCollide( hgeRect& rhs )
+bool Map::IsCollide( hgeRect& rhs ) const
 {
 	for(int i=0;i<(int)walls.size();++i)
 	{
@@ -237,4 +237,14 @@ void Map::SetFruit( float delta )
 			fruitTime = 20.0f;
 		}
 	}
+}
+
+float Map::PlayerX() const
+{
+	return playerX;
+}
+
+float Map::PlayerY() const
+{
+	return playerY;
 }

@@ -1,24 +1,24 @@
 #pragma once
-#include <hgerect.h>
-#include <hge.h>
-#include <hgesprite.h>
-#include <hgefont.h>
+
 #include <vector>
 #include <string>
 #include "IGameObject.h"
 
 class Bean;
+class Fruit;
 class Monster;
 class GameScene;
 class EndScene;
+class HGE;
+class hgeRect;
+class hgeFont;
+class hgeSprite;
 
 struct RecoverInfo
 {
 	std::string recoverSprName;
 	float recoverMinute;
 };
-
-class Fruit;
 
 class Map : IGameObject
 {
@@ -27,13 +27,13 @@ public:
 	~Map();
 	virtual void Update(float dt);
 	virtual void Render();
-	void SetMap(char *filename);
-	bool IsCollide(hgeRect& rhs);
+	bool IsCollide(hgeRect& rhs) const;
+	float PlayerX() const;
+	float PlayerY() const;
 	void Eat(hgeRect *rc);
 	void CheckAndEat(hgeRect *rc);
 	void UpdateSuperBean(float dt);
-	float PlayerX() const { return playerX; }
-	float PlayerY() const { return playerY;}
+	void SetMap(char *filename);
 	void SetFruit(float delta);
 private:
 	typedef std::vector<Monster*> MonsterContainer;

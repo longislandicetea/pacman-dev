@@ -1,23 +1,25 @@
 #pragma once
-#include <hge.h>
-#include <hgefont.h>
-#include <hgesprite.h>
-#include <hgeresource.h>
-#include <hgegui.h>
+
 #include "IScene.h"
+#include <hge.h>
+#include <hgeresource.h>
+
+class hgeFont;
+class hgeSprite;
+class hgeGUI;
 
 class HelpScene : public IScene
 {
 public:
 	HelpScene();
+	~HelpScene();
 	virtual bool FrameFunc();
 	virtual bool RenderFunc();
-	~HelpScene();
 private:
 	hgeGUI *guiHelp;
 	HGE *hge;
 	HEFFECT snd;
-	hgeSprite* background;
+	hgeSprite *background;
 	hgeSprite *spr;
 	hgeFont *fnt;
 	hgeResourceManager *manager;

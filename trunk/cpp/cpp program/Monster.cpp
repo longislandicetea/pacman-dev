@@ -77,3 +77,24 @@ void Monster::SetOrigin()
 	posX = originX;
 	posY = originY;
 }
+
+bool Monster::IsWeak() const
+{
+	return weakTime > 0.0f;
+}
+
+const std::string& Monster::SprName() const
+{
+	return sprName;
+}
+
+bool Monster::IsAlive() const
+{
+	return deathTime == 0;
+}
+
+void Monster::DeathTime( int val )
+{
+	deathTime = val;
+	weakTime = 0.0f;
+}

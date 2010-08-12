@@ -1,6 +1,6 @@
 #include "MovableObject.h"
 
-float MovableObject::Speed()
+float MovableObject::Speed() const
 {
 	return speed;
 }
@@ -36,4 +36,14 @@ void MovableObject::SetPos( float x , float y )
 {
 	posX = x;
 	posY = y;
+}
+
+float MovableObject::PosX() const 
+{
+	return posX;
+}
+
+float MovableObject::PosY() const
+{
+	return posY;
 }
