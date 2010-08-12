@@ -30,16 +30,16 @@ public:
 	bool IsCollide(hgeRect& rhs) const;
 	float PlayerX() const;
 	float PlayerY() const;
-	void Eat(hgeRect *rc);
-	void CheckAndEat(hgeRect *rc);
+	void EatMonster(hgeRect *rc);
+	void EatBean(hgeRect *rc);
 	void UpdateSuperBean(float dt);
 	void SetMap(char *filename);
-	void SetFruit(float delta);
+	void UpdateFruit(float delta);
 private:
-	typedef std::vector<Monster*> MonsterContainer;
+	typedef std::vector<Monster*> monsterContainer;
 	std::vector<hgeRect*> walls;
 	std::vector<Bean*> beans;
-	MonsterContainer monsters;
+	monsterContainer monsters;
 	float playerX,playerY;
 	float fruitX,fruitY;
 	int length,width;

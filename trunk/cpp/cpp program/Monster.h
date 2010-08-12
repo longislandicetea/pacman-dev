@@ -21,14 +21,14 @@ public:
 	hgeRect* GetBoudingBox();
 	MonsterAI* GetAI();
 	void SetWeak(float time);
-	void SetOrigin();
+	void SetOrigin();//the dead monster appears in the origin position
 	void DeathTime(int val);
 private:
-	float weakTime;
+	float weakTime;//if weakTime>0,monsters are in the weak state---turn blue
+	int deathTime;//if deathTime==0 monsters are in the dead state
 	float originX,originY;
-	int deathTime;
-	hgeSprite *spr;
 	int score;
+	hgeSprite *spr;
 	hgeSprite *newSpr;
 	HGE *hge;
 	MonsterAI *ai;

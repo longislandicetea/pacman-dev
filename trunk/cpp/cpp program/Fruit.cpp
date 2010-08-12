@@ -9,8 +9,3 @@ Fruit::Fruit( float x , float y ) :Bean(x,y,200 ,Application::Inst()->resMan()->
 {
 	score = 100;
 }
-
-Fruit::~Fruit()
-{
-
-}

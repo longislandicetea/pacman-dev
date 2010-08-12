@@ -11,7 +11,7 @@ class Player : public MovableObject
 {
 public:
 	Player(GameScene* scene);
-	~Player();
+	~Player(){};
 	virtual void Update(float delta);
 	virtual void Render();
 	float BegX() const;
@@ -25,12 +25,12 @@ public:
 	int GetScore();
 	void AddScore(int added);
 private:
-	hgeAnimation *spr;
 	int score;
-	HGE *hge;
-	GameScene *gameScene;
 	int life;
 	int reviveTime;
 	float begX,begY;
 	float rotation;
+	HGE *hge;
+	hgeAnimation *spr;
+	GameScene *gameScene;
 };

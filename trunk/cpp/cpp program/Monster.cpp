@@ -25,11 +25,11 @@ Monster::~Monster()
 
 void Monster::Update( float delta )
 {
-	if (deathTime > 0) {
+	if (deathTime > 0) 
+	{
 		--deathTime;
 		return;
 	}
-
 	if (weakTime > 0.0f) 
 	{
 		weakTime -= delta;
@@ -39,7 +39,6 @@ void Monster::Update( float delta )
 			weakTime = 0.0f;
 		}
 	}
-
 	ai->Action(this,delta);
 }
 
@@ -47,7 +46,6 @@ void Monster::Render()
 {
 	if (deathTime > 0)
 		return;
-
 	if (weakTime > 0.0f)
 		newSpr->Render(posX , posY);
 	else 

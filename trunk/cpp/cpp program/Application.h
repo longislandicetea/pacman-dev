@@ -8,13 +8,13 @@ class Application
 {
 public:
 	static Application* Inst();
-	void Run();
-	HGE* Hge();
-	hgeResourceManager* resMan();
+	~Application();
 	static bool FrameFunc();
 	static bool RenderFunc();
+	HGE* Hge();
+	hgeResourceManager* resMan();
+	void Run();
 	void ChangeScene(IScene* scene);
-	~Application();
 private:
 	Application();
 	void Initialize();

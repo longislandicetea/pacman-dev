@@ -5,5 +5,5 @@ class Fruit : public Bean
 {
 public:
 	Fruit(float x , float y);
-	virtual ~Fruit();
+	virtual ~Fruit() {};
 };

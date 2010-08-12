@@ -9,8 +9,8 @@ class Bean:public IGameObject
 {
 public:
 	Bean(float x , float y);
-	virtual ~Bean();
-	virtual void Update(float delta);
+	virtual ~Bean() {};
+	virtual void Update(float delta){};
 	virtual void Render();
 	int GetScore();
 	hgeSprite* GetSpr();

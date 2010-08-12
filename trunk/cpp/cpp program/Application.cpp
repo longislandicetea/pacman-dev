@@ -3,7 +3,6 @@
 #include <hge.h>
 #include <cmath>
 #include <cassert>
-//#include "GameScene.h"
 #include "MenuScene.h"
 #include <hgeresource.h>
 
@@ -15,7 +14,6 @@ Application::Application()
 	current = new MenuScene();
 	toBeChanged = NULL;
 }
-
 
 void Application::Run()
 {
@@ -43,6 +41,7 @@ bool Application::RenderFunc()
 	return ret;
 }
 
+//singleton
 Application* Application::Inst()
 {
 	static Application _app;

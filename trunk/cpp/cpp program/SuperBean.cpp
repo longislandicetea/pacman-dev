@@ -8,10 +8,6 @@ SuperBean::SuperBean( float x , float y ) : Bean(x,y,50,Application::Inst()->res
 	score = 50;
 }
 
-SuperBean::~SuperBean()
-{
-}
-
 float SuperBean::Time() const
 {
 	return time;

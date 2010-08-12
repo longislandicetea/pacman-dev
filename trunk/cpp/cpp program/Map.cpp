@@ -66,14 +66,12 @@ void Map::SetMap( char *filename )
 	{
 		for(int j=0;j<width;++j)
 		{
-			fscanf(fin,"%c",&tmpc);
-			
 			float posx = j*sideLen, posy = i*sideLen;
 			hgeRect* tmprect = new hgeRect(posx,posy,posx+sideLen,posy+sideLen);
+			
+			fscanf(fin,"%c",&tmpc);
 			if(tmpc=='X') 
-			{
 				walls.push_back(new hgeRect(*tmprect));
-			}
 			else if(tmpc=='P')
 			{
 				playerX = (tmprect->x1 + tmprect->x2)/2.0f;
@@ -105,7 +103,7 @@ void Map::SetMap( char *filename )
 	}
 }
 
-void Map::CheckAndEat( hgeRect *rc ) 
+void Map::EatBean( hgeRect *rc ) 
 {
 	for(int i = 0;i<(int)beans.size();++i)
 	{
@@ -149,18 +147,14 @@ void Map::Update( float dt )
 {
 	if(beans.empty())
 		Application::Inst()->ChangeScene(new EndScene(true));
-	
 	else
 	{
 		for(int i=0;i<(int)monsters.size();++i)
 			monsters[i]->Update(dt);
-
-	    for(int i=0;i<(int)beans.size();++i)
+		for(int i=0;i<(int)beans.size();++i)
 		    beans[i]->Update(dt);
-
-	    UpdateSuperBean(dt);
-
-	    SetFruit(dt);
+		UpdateSuperBean(dt);
+		UpdateFruit(dt);
 	}
 }
 
@@ -168,20 +162,18 @@ void Map::Render()
 {
 	for(int i=0;i<(int)walls.size();++i)
 		wallSpr->Render(walls[i]->x1,walls[i]->y1);
-
 	for(int i=0;i<(int)beans.size();++i)
 		beans[i]->Render();
-
 	for(int i=0;i<(int)monsters.size();++i)
 		monsters[i]->Render();
-
+	
 	if (fruit!=NULL)
 		fruit->Render();
 }
 
-void Map::Eat( hgeRect *rc )
+void Map::EatMonster( hgeRect *rc )
 {
-	typedef MonsterContainer::iterator mIter;
+	typedef monsterContainer::iterator mIter;
 	mIter cur = monsters.begin();
 	
 	while(cur != monsters.end()) 
@@ -219,7 +211,7 @@ void Map::UpdateSuperBean(float dt)
 	Application::Inst()->resMan()->GetAnimation("SuperBean")->Update(dt);
 }
 
-void Map::SetFruit( float delta )
+void Map::UpdateFruit( float delta )
 {
 	if(fruitTime>0.0f)
 		fruitTime -= delta;
@@ -228,13 +220,13 @@ void Map::SetFruit( float delta )
 		if (fruit == NULL) 
 		{
 			fruit = new Fruit(fruitX,fruitY);
-			fruitTime = 10.0f;
+			fruitTime = 10.0f;//the span fruit appears lasts 10s
 		} 
 		else 
 		{
 			delete fruit;
 			fruit = NULL;
-			fruitTime = 20.0f;
+			fruitTime = 20.0f;//the span fruit disappears lasts 20s
 		}
 	}
 }

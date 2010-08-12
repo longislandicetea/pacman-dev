@@ -23,11 +23,6 @@ Bean::Bean( float x , float y , int _score , hgeSprite* _spr )
 	score = _score;
 }
 
-void Bean::Update( float delta )
-{
-
-}
-
 void Bean::Render()
 {
 	spr->Render(posX,posY);
@@ -37,11 +32,6 @@ hgeRect* Bean::GetBoundingBox()
 {
 	hgeRect *rect = new hgeRect();
 	return spr->GetBoundingBoxEx(posX,posY,0.0f,0.2f,0.2f,rect);
-}
-
-Bean::~Bean()
-{
-
 }
 
 int Bean::GetScore()

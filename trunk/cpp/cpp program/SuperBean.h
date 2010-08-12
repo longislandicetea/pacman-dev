@@ -6,8 +6,8 @@ class SuperBean : public Bean
 {
 public:
 	SuperBean(float x , float y);
-	virtual ~SuperBean();
+	virtual ~SuperBean() {};
 	float Time() const;
 private:
-	float time;
+	float time;//span bewteen each flicker
 };

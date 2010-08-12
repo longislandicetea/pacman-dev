@@ -16,7 +16,6 @@ MenuScene::MenuScene()
 	guiMenu->AddCtrl(new hgeGUIMenuItem(1,fnt,snd,320,300,0.0f,"Start"));
 	guiMenu->AddCtrl(new hgeGUIMenuItem(2,fnt,snd,320,350,0.2f,"Help"));
 	guiMenu->AddCtrl(new hgeGUIMenuItem(3,fnt,snd,320,400,0.4f,"Exit"));
-
 	guiMenu->SetNavMode(HGEGUI_UPDOWN | HGEGUI_CYCLED);
 	guiMenu->SetCursor(spr);
 	guiMenu->SetFocus(1);
