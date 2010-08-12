@@ -8,7 +8,6 @@
 
 Player::Player(GameScene* scene) : MovableObject(80,0,0)
 {
-
 	hge = Application::Inst()->Hge();
 	spr = Application::Inst()->resMan()->GetAnimation("Player");
 	spr->Play();
@@ -56,20 +55,16 @@ void Player::Update(float delta)
 		rotation = M_PI/2.0f;
 	}
 	
-	hgeRect* rc = this->GetBoundingBox();
+	hgeRect *rc = this->GetBoundingBox();
 	if (gameScene->GetMap()->IsCollide(*rc)) 
 	{
 		posX = oldx;
 		posY = oldy;
 	}
 	spr->Update(delta);
-	gameScene->GetMap()->Eat(rc);
-	gameScene->GetMap()->CheckAndEat(rc);
+	gameScene->GetMap()->EatMonster(rc);
+	gameScene->GetMap()->EatBean(rc);
 	delete rc;
-}
-
-Player::~Player()
-{
 }
 
 hgeRect* Player::GetBoundingBox()
@@ -77,7 +72,6 @@ hgeRect* Player::GetBoundingBox()
 	hgeRect *rect = new hgeRect();
 	return spr->GetBoundingBoxEx(posX,posY,0.0f,0.8f,0.8f,rect);
 }
-
 
 void Player::AddScore( int added )
 {

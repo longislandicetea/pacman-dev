@@ -13,6 +13,7 @@ EndScene::EndScene(bool _win)
 		spr = Application::Inst()->resMan()->GetSprite("Lose");
 }
 
+//return to menu after 3 seconds
 bool EndScene::FrameFunc()
 {
 	--span;

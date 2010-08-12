@@ -10,31 +10,32 @@ MonsterAI::MonsterAI(Map *map)
 	direction = rand()%4;
 }
 
-void MonsterAI::Action(Monster* rhs , float delta)
+void MonsterAI::Action(Monster *monster , float delta)
 {
-	float oldx = rhs->PosX();
-	float oldy = rhs->PosY();
+	float oldx = monster->PosX();
+	float oldy = monster->PosY();
 	
+	//set direction at random
 	switch (direction)
 	{
 	case 0:
-		rhs->Up(delta);
+		monster->Up(delta);
 		break;
 	case 1:
-		rhs->Down(delta);
+		monster->Down(delta);
 		break;
 	case 2:
-		rhs->Left(delta);
+		monster->Left(delta);
 		break;
 	case 3:
-		rhs->Right(delta);
+		monster->Right(delta);
 		break;
 	}
-	hgeRect *rc = rhs->GetBoudingBox();
+	hgeRect *rc = monster->GetBoudingBox();
 
 	if(map->IsCollide(*rc))
 	{
-		rhs->SetPos(oldx,oldy);
+		monster->SetPos(oldx,oldy);
 		SetDirection(direction);
 	}
 
