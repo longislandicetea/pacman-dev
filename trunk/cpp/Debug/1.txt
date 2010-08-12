@@ -267,3 +267,10 @@ Sound Lose
  filename=lose.mp3
  resgroup=1
 }
+
+Music ThemeMusic
+{
+ filename=schnapi.mp3
+ amplify=70
+ resgroup=1
+}

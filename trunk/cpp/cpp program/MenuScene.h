@@ -18,6 +18,7 @@ private:
 	hgeGUI *guiMenu;
 	HGE *hge;
 	HEFFECT snd;
+	HMUSIC themeMusic;
 	hgeSprite *background;
 	hgeSprite *spr;
 	hgeFont *fnt;
