@@ -1,5 +1,6 @@
 #pragma once
 #include "IScene.h"
+#include <hge.h>
 
 class hgeSprite;
 
@@ -11,6 +12,7 @@ public:
 	virtual bool RenderFunc();
 private:
 	hgeSprite *spr;
+	HCHANNEL backSnd;
 	int span;
 	bool win;
 };
