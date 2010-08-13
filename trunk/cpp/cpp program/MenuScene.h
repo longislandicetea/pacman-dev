@@ -14,11 +14,12 @@ public:
 	~MenuScene();
 	virtual bool FrameFunc();
 	virtual bool RenderFunc();
+	//static HCHANNEL GetThemeMusic();
 private:
 	hgeGUI *guiMenu;
 	HGE *hge;
 	HEFFECT snd;
-	HMUSIC themeMusic;
+	//static HCHANNEL channel;
 	hgeSprite *background;
 	hgeSprite *spr;
 	hgeFont *fnt;

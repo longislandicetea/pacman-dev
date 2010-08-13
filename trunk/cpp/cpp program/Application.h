@@ -1,6 +1,6 @@
 #pragma once
+#include <hge.h>
 
-class HGE;
 class IScene;
 class hgeResourceManager;
 
@@ -15,6 +15,7 @@ public:
 	hgeResourceManager* resMan();
 	void Run();
 	void ChangeScene(IScene* scene);
+	HCHANNEL GetChannel();
 private:
 	Application();
 	void Initialize();
@@ -22,4 +23,5 @@ private:
 	IScene *toBeChanged;
 	HGE *hge;
 	hgeResourceManager *res;
+	HCHANNEL channel;
 };

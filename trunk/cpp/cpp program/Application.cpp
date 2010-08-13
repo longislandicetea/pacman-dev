@@ -12,6 +12,7 @@ Application::Application()
 	srand(12345);
 	res = new hgeResourceManager("1.txt");
 	current = new MenuScene();
+	channel = hge->Music_Play(res->GetStream("ThemeMusic"),true,80);
 	toBeChanged = NULL;
 }
 
@@ -86,4 +87,9 @@ hgeResourceManager* Application::resMan()
 void Application::ChangeScene( IScene* scene )
 {
 	toBeChanged = scene;
+}
+
+HCHANNEL Application::GetChannel()
+{
+	return channel;
 }

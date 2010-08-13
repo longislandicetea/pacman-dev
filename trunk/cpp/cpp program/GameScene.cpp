@@ -23,7 +23,12 @@ bool GameScene::FrameFunc()
 	if (Application::Inst()->Hge()->Input_KeyUp(HGEK_SPACE))
 		paused = !paused;
 	if (paused)
+	{
+		Application::Inst()->Hge()->Channel_Pause(Application::Inst()->GetChannel());
 		return false;
+	}
+	else
+		Application::Inst()->Hge()->Channel_Resume(Application::Inst()->GetChannel());
 	if(Application::Inst()->Hge()->Input_KeyUp(HGEK_ESCAPE))
 		Application::Inst()->ChangeScene(new MenuScene);
 	float dt = Application::Inst()->Hge()->Timer_GetDelta();
