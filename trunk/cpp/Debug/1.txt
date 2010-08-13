@@ -262,9 +262,15 @@ Sound Eat
  resgroup=1
 }
 
-Sound Lose
+Stream Lose
 {
- filename=lose.mp3
+ filename=lose.wav
+ resgroup=1
+}
+
+Stream Win
+{
+ filename=win.wav
  resgroup=1
 }
 

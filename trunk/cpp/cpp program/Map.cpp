@@ -192,7 +192,10 @@ void Map::EatMonster( hgeRect *rc )
 					tmpplayer->SetLife();
 					tmpplayer->SetPos(tmpplayer->BegX(),tmpplayer->BegY());
 					if(tmpplayer->GetLife()==0)
+					{
+						Application::Inst()->Hge()->Channel_Stop(Application::Inst()->GetChannel());
 						Application::Inst()->ChangeScene(new EndScene(false));
+					}
 				}
 			}
 			else

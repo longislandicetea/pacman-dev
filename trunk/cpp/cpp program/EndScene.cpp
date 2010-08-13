@@ -7,18 +7,28 @@ EndScene::EndScene(bool _win)
 {
 	span = 180;
 	win = _win;
-	if(win)
+	if(!win)
+	{
 		spr = Application::Inst()->resMan()->GetSprite("Win");
+		backSnd = Application::Inst()->Hge()->Music_Play(Application::Inst()->resMan()->GetStream("Win"),false);
+	}
 	else
+	{
 		spr = Application::Inst()->resMan()->GetSprite("Lose");
+		backSnd = Application::Inst()->Hge()->Music_Play(Application::Inst()->resMan()->GetStream("Lose"),false);
+	}
 }
 
 //return to menu after 3 seconds
 bool EndScene::FrameFunc()
 {
 	--span;
+	Application::Inst()->Hge()->Channel_Resume(backSnd);
 	if(span<=0)
+	{
 		Application::Inst()->ChangeScene(new MenuScene());
+		Application::Inst()->Hge()->Channel_Pause(backSnd);
+	}
 	return false;
 }
 
