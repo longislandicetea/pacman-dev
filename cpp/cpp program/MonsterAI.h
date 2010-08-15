@@ -10,6 +10,9 @@ public:
 	void Action(Monster *monster , float delta);
 private:
 	int direction;
-	void SetDirection(int now);
+	int collidTimes;
 	Map *map;
+	void normalAI(int now);
+	void smartAI(float monsterX,float monsterY,int now);
+	void randDirection(int x,int y);
 };
