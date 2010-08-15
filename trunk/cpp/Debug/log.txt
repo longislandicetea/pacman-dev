@@ -1,0 +1,24 @@
+HGE Started..
+
+HGE version: 1.80
+Date: 15.08.2010, 13:24:59
+
+Application: Pacman
+OS: Windows 6.1.7600
+Memory: 2039836K total, 1214472K free
+
+D3D Driver: atiu9pag.dll
+Description: ATI Mobility Radeon HD 3400 Series  
+Version: 7.14.1.6063
+Can't find appropriate full screen video mode
+Mode: 680 x 480 x UNKNOWN
+
+Sound Device: ÑïÉùÆ÷ (Conexant 20561 SmartAudio HD)
+Sample rate: 44100
+
+Init done.
+
+Can't load resource: scorefnt.fnt
+
+Finishing..
+The End.

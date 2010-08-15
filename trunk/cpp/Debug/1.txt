@@ -33,7 +33,7 @@ Sprite Bean
 
 Texture wallTexture
 {
- filename=wall.png
+ filename=newwall.png
  resgroup=1
 }
 
