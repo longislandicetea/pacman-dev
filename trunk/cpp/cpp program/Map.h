@@ -30,6 +30,7 @@ public:
 	bool IsCollide(hgeRect& rhs) const;
 	float PlayerX() const;
 	float PlayerY() const;
+	GameScene* GetGameScene();
 	void EatMonster(hgeRect *rc);
 	void EatBean(hgeRect *rc);
 	void UpdateSuperBean(float dt);

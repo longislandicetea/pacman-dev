@@ -243,3 +243,8 @@ float Map::PlayerY() const
 {
 	return playerY;
 }
+
+GameScene* Map::GetGameScene()
+{
+	return gameScene;
+}
