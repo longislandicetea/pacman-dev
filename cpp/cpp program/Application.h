@@ -13,9 +13,9 @@ public:
 	static bool RenderFunc();
 	HGE* Hge();
 	hgeResourceManager* resMan();
+	HCHANNEL GetChannel();
 	void Run();
 	void ChangeScene(IScene* scene);
-	HCHANNEL GetChannel();
 private:
 	Application();
 	void Initialize();

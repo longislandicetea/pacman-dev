@@ -5,9 +5,9 @@
 
 EndScene::EndScene(bool _win)
 {
-	span = 180;
+	span = 240;
 	win = _win;
-	if(!win)
+	if(win)
 	{
 		spr = Application::Inst()->resMan()->GetSprite("Win");
 		backSnd = Application::Inst()->Hge()->Music_Play(Application::Inst()->resMan()->GetStream("Win"),false);
@@ -19,7 +19,7 @@ EndScene::EndScene(bool _win)
 	}
 }
 
-//return to menu after 3 seconds
+//return to menu after 4 seconds
 bool EndScene::FrameFunc()
 {
 	--span;

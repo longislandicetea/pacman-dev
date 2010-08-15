@@ -8,6 +8,7 @@ MenuScene::MenuScene()
 {
 	hge = Application::Inst()->Hge();
 	manager = Application::Inst()->resMan();
+	hge->Channel_SetPos(Application::Inst()->GetChannel(),0.0f);
 	background = manager->GetSprite("Background");
 	snd = manager->GetEffect("Cursor");
 	spr=manager->GetSprite("Cursor");
