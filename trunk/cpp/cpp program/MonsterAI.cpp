@@ -21,7 +21,10 @@ void MonsterAI::Action(Monster *monster , float delta)
 	move(monster,delta);
 
 	if(collidTimes>3)
+	{
 		aiState = (aiState+1)%2;
+		collidTimes = 0;
+	}
 	
 	switch(aiState)
 	{

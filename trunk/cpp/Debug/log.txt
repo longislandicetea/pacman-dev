@@ -1,11 +1,11 @@
 HGE Started..
 
 HGE version: 1.80
-Date: 16.08.2010, 20:47:06
+Date: 16.08.2010, 21:05:56
 
 Application: Pacman
 OS: Windows 6.1.7600
-Memory: 2039836K total, 920260K free
+Memory: 2039836K total, 827036K free
 
 D3D Driver: atiu9pag.dll
 Description: ATI Mobility Radeon HD 3400 Series  
