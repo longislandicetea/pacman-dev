@@ -11,6 +11,7 @@ MonsterAI::MonsterAI(Map *map)
 	this->map=map;
 	direction = rand()%4;
 	collidTimes = 0;
+	aiState = 0;//use normalAI at beginning
 }
 
 void MonsterAI::Action(Monster *monster , float delta)
@@ -18,16 +19,21 @@ void MonsterAI::Action(Monster *monster , float delta)
 	float oldX = monster->PosX();
 	float oldY = monster->PosY();
 	move(monster,delta);
-	
-	if(collidTimes>3)
-	{
-		collidTimes = 0;
-		normalAI(direction);
-	}
-	else
-		smartAI(oldX,oldY,direction);
 
-	handleCollide(monster,oldX,oldY);
+	if(collidTimes>3)
+		aiState = (aiState+1)%2;
+
+	switch(aiState)
+	{
+	case'0':{
+		if(handleCollide(monster,oldX,oldY))
+			normalAI(direction);
+			}
+	case'1':{
+		if(handleCollide(monster,oldX,oldY))
+			smartAI(oldX,oldY,direction);
+			}
+	}
 }
 
 void MonsterAI::normalAI( int now )
@@ -82,13 +88,19 @@ void MonsterAI::move( Monster *monster,float delta )
 	}
 }
 
-void MonsterAI::handleCollide( Monster* monster,float x,float y )
+bool MonsterAI::handleCollide( Monster* monster,float x,float y )
 {
 	hgeRect *rc = monster->GetBoudingBox();
 	if(map->IsCollide(*rc))
 	{
 		monster->SetPos(x,y);
 		++collidTimes;
+		delete rc;
+		return true;
 	}
-	delete rc;
+	else 
+	{
+		delete rc;
+		return false;
+	}
 }
