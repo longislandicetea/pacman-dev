@@ -38,8 +38,11 @@ void MonsterAI::normalAI( Monster *monster,int now,float oldX,float oldY)
 {
 	if(handleCollide(monster,oldX,oldY))
 	{
-		direction = rand()%4;
-	} while (direction==now);
+		do 
+		{
+			direction = rand()%4;
+		}while (direction==now);
+	} 
 }
 
 void MonsterAI::randDirection( int x , int y )
@@ -57,7 +60,9 @@ void MonsterAI::smartAI( Monster *monster,int now,float oldX,float oldY)
 	float monsterX = monster->PosX();
 	float monsterY = monster->PosY();
 
-	if(isAway(monsterX,monsterY,playerX,playerY,now) && handleCollide(monster,oldX,oldY))
+	bool a = isAway(monsterX,monsterY,playerX,playerY,now);
+	bool b = handleCollide(monster,oldX,oldY);
+	if(a||b)
 	{
 		if (monsterX<playerX && monsterY<playerY)
 			randDirection(1,3);
@@ -127,6 +132,6 @@ bool MonsterAI::isAway( float monsterX,float monsterY,float playerX,float player
 		break;
 	}
 	float tmp = x*(playerX-monsterX)+y*(playerY-monsterY);
-	return tmp>0?true:false;
+	return tmp>0;
 }
 
