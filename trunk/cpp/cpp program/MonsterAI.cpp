@@ -15,25 +15,9 @@ MonsterAI::MonsterAI(Map *map)
 
 void MonsterAI::Action(Monster *monster , float delta)
 {
-	float oldx = monster->PosX();
-	float oldy = monster->PosY();
-	
-	//set direction at random
-	switch (direction)
-	{
-	case 0:
-		monster->Up(delta);
-		break;
-	case 1:
-		monster->Down(delta);
-		break;
-	case 2:
-		monster->Left(delta);
-		break;
-	case 3:
-		monster->Right(delta);
-		break;
-	}
+	float oldX = monster->PosX();
+	float oldY = monster->PosY();
+	move(monster,delta);
 	
 	if(collidTimes>3)
 	{
@@ -41,16 +25,9 @@ void MonsterAI::Action(Monster *monster , float delta)
 		normalAI(direction);
 	}
 	else
-		smartAI(monster->PosX(),monster->PosY(),direction);
-	
-	hgeRect *rc = monster->GetBoudingBox();
-	if(map->IsCollide(*rc))
-	{
-		monster->SetPos(oldx,oldy);
-		normalAI(direction);
-		++collidTimes;
-	}
-	delete rc;
+		smartAI(oldX,oldY,direction);
+
+	handleCollide(monster,oldX,oldY);
 }
 
 void MonsterAI::normalAI( int now )
@@ -82,4 +59,36 @@ void MonsterAI::smartAI( float monsterX , float monsterY,int now)
 		randDirection(0,3);
 	else if (monsterX>playerX && monsterY>playerY)
 		randDirection(0,2);
+}
+
+void MonsterAI::move( Monster *monster,float delta )
+{
+	float oldx = monster->PosX();
+	float oldy = monster->PosY();
+	switch (direction)
+	{
+	case 0:
+		monster->Up(delta);
+		break;
+	case 1:
+		monster->Down(delta);
+		break;
+	case 2:
+		monster->Left(delta);
+		break;
+	case 3:
+		monster->Right(delta);
+		break;
+	}
+}
+
+void MonsterAI::handleCollide( Monster* monster,float x,float y )
+{
+	hgeRect *rc = monster->GetBoudingBox();
+	if(map->IsCollide(*rc))
+	{
+		monster->SetPos(x,y);
+		++collidTimes;
+	}
+	delete rc;
 }
