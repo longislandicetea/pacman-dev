@@ -22,23 +22,21 @@ void MonsterAI::Action(Monster *monster , float delta)
 
 	if(collidTimes>3)
 		aiState = (aiState+1)%2;
-
+	
 	switch(aiState)
 	{
-	case'0':{
-		if(handleCollide(monster,oldX,oldY))
-			normalAI(direction);
-			}
-	case'1':{
-		if(handleCollide(monster,oldX,oldY))
-			smartAI(oldX,oldY,direction);
-			}
+	case 0:
+		normalAI(monster,direction,oldX,oldY);
+		break;
+	case 1:
+		smartAI(monster,direction,oldX,oldY);
+		break;
 	}
 }
 
-void MonsterAI::normalAI( int now )
+void MonsterAI::normalAI( Monster *monster,int now,float oldX,float oldY)
 {
-	do 
+	if(handleCollide(monster,oldX,oldY))
 	{
 		direction = rand()%4;
 	} while (direction==now);
@@ -52,19 +50,24 @@ void MonsterAI::randDirection( int x , int y )
 	direction = d[rand()%2];
 }
 
-void MonsterAI::smartAI( float monsterX , float monsterY,int now)
+void MonsterAI::smartAI( Monster *monster,int now,float oldX,float oldY)
 {
 	float playerX = map->GetGameScene()->GetPlayer()->PosX();
 	float playerY = map->GetGameScene()->GetPlayer()->PosY();
+	float monsterX = monster->PosX();
+	float monsterY = monster->PosY();
 
-	if (monsterX<playerX && monsterY<playerY)
-		randDirection(1,3);
-	else if (monsterX>playerX && monsterY<playerY)
-		randDirection(1,2);
-	else if (monsterX<playerX && monsterY>playerY)
-		randDirection(0,3);
-	else if (monsterX>playerX && monsterY>playerY)
-		randDirection(0,2);
+	if(isAway(monsterX,monsterY,playerX,playerY,now) && handleCollide(monster,oldX,oldY))
+	{
+		if (monsterX<playerX && monsterY<playerY)
+			randDirection(1,3);
+		else if (monsterX>playerX && monsterY<playerY)
+			randDirection(1,2);
+		else if (monsterX<playerX && monsterY>playerY)
+			randDirection(0,3);
+		else if (monsterX>playerX && monsterY>playerY)
+			randDirection(0,2);
+	}
 }
 
 void MonsterAI::move( Monster *monster,float delta )
@@ -104,3 +107,26 @@ bool MonsterAI::handleCollide( Monster* monster,float x,float y )
 		return false;
 	}
 }
+
+bool MonsterAI::isAway( float monsterX,float monsterY,float playerX,float playerY,int now )
+{
+	int x,y;
+	switch(direction)
+	{
+	case 0:
+		x=0;y=-1;
+		break;
+	case 1:
+		x=0;y=1;
+		break;
+	case 2:
+		x=-1;y=0;
+		break;
+	case 3:
+		x=1;y=0;
+		break;
+	}
+	float tmp = x*(playerX-monsterX)+y*(playerY-monsterY);
+	return tmp>0?true:false;
+}
+
