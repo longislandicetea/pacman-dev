@@ -14,8 +14,9 @@ private:
 	int aiState;
 	Map *map;
 	void move(Monster *monster,float delta);
-	void normalAI(int now);
-	void smartAI(float monsterX,float monsterY,int now);
+	void normalAI( Monster *monster,int now,float oldX,float oldY);
+	void smartAI(Monster *monster,int now,float oldX,float oldY);
 	void randDirection(int x,int y);
 	bool handleCollide(Monster *monster,float x,float y);
+	bool isAway(float monsterX,float monsterY,float playerX,float playerY,int now);
 };
