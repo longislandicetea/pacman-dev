@@ -20,9 +20,9 @@ void MonsterAI::Action(Monster *monster , float delta)
 	float oldY = monster->PosY();
 	move(monster,delta);
 
-	if(collidTimes>3)
+	if(aiState==1 && collidTimes>3)
 	{
-		aiState = (aiState+1)%2;
+		aiState = 0;
 		collidTimes = 0;
 	}
 	
