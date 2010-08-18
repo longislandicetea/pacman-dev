@@ -7,11 +7,11 @@
 #include "Player.h"
 #include <vector>
 
-GameScene::GameScene()
+GameScene::GameScene( char* mapfile)
 {
 	paused = false;
 	gameMap = new Map(this);
-	gameMap->SetMap("mappic.txt");
+	gameMap->SetMap(mapfile);
 	player = new Player(this);
 	fnt = Application::Inst()->resMan()->GetFont("ScoreAndLife");
 	pauseFnt = Application::Inst()->resMan()->GetFont("ScoreAndLife");
