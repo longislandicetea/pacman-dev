@@ -7,6 +7,7 @@ EndScene::EndScene(bool _win)
 {
 	span = 240;
 	win = _win;
+	Application::Inst()->Hge()->Channel_Pause(Application::Inst()->GetChannel());
 	if(win)
 	{
 		spr = Application::Inst()->resMan()->GetSprite("Win");

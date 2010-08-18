@@ -3,6 +3,7 @@
 #include "MenuItem.h"
 #include "GameScene.h"
 #include "HelpScene.h"
+#include "OptionScene.h"
 
 MenuScene::MenuScene()
 {
@@ -40,7 +41,7 @@ bool MenuScene::FrameFunc()
 		switch(lastid)
 		{
 		case 1:
-			Application::Inst()->ChangeScene(new GameScene());
+			Application::Inst()->ChangeScene(new OptionScene());
 			break;
 		case 2:
 			Application::Inst()->ChangeScene(new HelpScene());

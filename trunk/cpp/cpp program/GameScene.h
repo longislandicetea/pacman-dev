@@ -11,7 +11,7 @@ class hgeFont;
 class GameScene : public IScene
 {
 public:
-	GameScene();
+	GameScene(char* mapfile);
 	~GameScene();
 	virtual bool FrameFunc();
 	virtual bool RenderFunc();

@@ -250,6 +250,21 @@ Sprite Help
  resgroup=1
 }
 
+Texture optionTexture
+{
+ filename=option.png
+ resgroup=1
+}
+
+Sprite Option
+{
+ texture=optionTexture
+ rect=0,0,680,480
+ hotspot=0,0
+ blendmode=COLORMUL,ALPHABLEND,NOZWRITE
+ resgroup=1
+}
+
 Sound Cursor
 {
  filename=cursor.mp3
