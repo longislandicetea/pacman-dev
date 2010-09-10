@@ -1,0 +1,40 @@
+﻿Build started 2010/9/10 9:43:40.
+     1>Project "C:\Users\lenovo\code\pacman\cpp\cpp program\cpp program.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Creating "Release\cpp program.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /IC:\Honey\resource\hge181\include /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _WINDOWS /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt Application.cpp
+         Application.cpp
+       ResourceCompile:
+         All outputs are up-to-date.
+       Link:
+         C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\lenovo\code\pacman\cpp\Release\cpp program.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:C:\Honey\resource\hge181\lib\vc hge.lib hgehelp.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Release\cpp program.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\lenovo\code\pacman\cpp\Release\cpp program.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\lenovo\code\pacman\cpp\Release\cpp program.lib" /MACHINE:X86 "Release\cpp program.res"
+         Release\Application.obj
+         Release\Bean.obj
+         Release\EndScene.obj
+         Release\Fruit.obj
+         Release\GameScene.obj
+         Release\HelpScene.obj
+         Release\Main.obj
+         Release\Map.obj
+         Release\MenuItem.obj
+         Release\MenuScene.obj
+         Release\Monster.obj
+         Release\MonsterAI.obj
+         Release\MovableObject.obj
+         Release\OptionScene.obj
+         Release\Player.obj
+         Release\SuperBean.obj /nodefaultlib:libc  
+         Generating code
+         Finished generating code
+         cpp program.vcxproj -> C:\Users\lenovo\code\pacman\cpp\Release\cpp program.exe
+       Manifest:
+         C:\Program Files\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"C:\Users\lenovo\code\pacman\cpp\Release\cpp program.exe;#1" /manifest "Release\cpp program.exe.intermediate.manifest"
+       FinalizeBuildStatus:
+         Deleting file "Release\cpp program.unsuccessfulbuild".
+         Touching "Release\cpp program.lastbuildstate".
+     1>Done Building Project "C:\Users\lenovo\code\pacman\cpp\cpp program\cpp program.vcxproj" (build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:04.19
