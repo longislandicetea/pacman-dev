@@ -1,5 +1,7 @@
 #include"List.h"
 #include<iostream>
+#include<stack>
+using namespace std;
 
 void List::setPosition(int pos) const
 {
@@ -11,6 +13,24 @@ void List::setPosition(int pos) const
 
 	for(;currentPos!=pos;++currentPos)
 		current = current->Next();
+}
+
+List::List(List& copy)
+{
+	count = copy.count;
+	Node *now,*oldNode;
+	oldNode = copy.head;
+	head = oldNode;
+	if(oldNode!=NULL)
+	{
+		now = head = new Node(oldNode->Entry());
+		while(oldNode->Next()!=NULL)
+		{
+			oldNode = oldNode->Next();
+			now->Next() = new Node(oldNode->Entry());
+			now = now->Next();
+		}
+	}
 }
 
 void List::Print()
@@ -64,28 +84,20 @@ void List::Remove(int pos)
 		return ;
 	
 	Node *removedNode,*previous;
-	if (pos > 0) {
+	
+	if (pos > 0) 
+	{
 		setPosition(pos-1);
 		removedNode = current->Next();
 		current->Next() = removedNode->Next();
-	} else {
+	}
+	else 
+	{
 		removedNode = head;
 		head = head->Next();
+		currentPos = 0;
+		current = head;
 	}
-	/*setPosition(pos);
-	removedNode = current;
-	if(pos>0)
-	{
-		setPosition(pos-1);
-	    previous = current;
-	    setPosition(pos+1);
-	    previous->Next() = current;
-	}
-	else
-	{
-		setPosition(1);
-		head = current;
-	}*/
 	
 	delete removedNode;
 	--count;
@@ -101,7 +113,7 @@ void List::Clear()
 	Node *now = head;
 	for(int i = 0;i<count;++i)
 	{
-		Node * next = now->Next();
+		Node *next = now->Next();
 		delete now;
 		now = next;
 	}
@@ -115,4 +127,38 @@ void List::Retrieve(int pos ,int& x)
 		return;
 	setPosition(pos);
 	x = current->Entry();
+}
+
+void List::Reverse()
+{
+	//ÔÝ´æ·¨
+	/*List tmp;
+	int t;
+	for(int i = 0;i<count;++i)
+	{
+		Retrieve(i,t);
+		tmp.Insert(i,t);
+	}
+	for(int i = 0;i<count;++i)
+	{
+		Remove(i);
+		tmp.Retrieve(tmp.Size()-1-i,t);
+		Insert(i,t);
+	}*/
+
+	//stack·¨
+	stack<int> tmp;
+	int cnt = count;
+	int t;
+	while (cnt--) 
+	{
+		Retrieve(0,t);
+		Remove(0);
+		tmp.push(t);
+	}
+	while (!tmp.empty()) 
+	{
+		Insert(count,tmp.top());
+		tmp.pop();
+	}
 }

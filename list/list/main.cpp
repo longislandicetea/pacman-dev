@@ -28,12 +28,17 @@ int main()
 	a.Insert(1,2);
 	a.Insert(2,3);
 	a.Insert(3,5);
-
 	a.Print();
 
-	int tmp;
+	/*int tmp;
 	a.Retrieve(1,tmp);
-	cout<<tmp<<endl;
+	cout<<tmp<<endl;*/
+
+	a.Reverse();
+	a.Print();
+
+	/*List b(a);
+	b.Print();*/
 
 	return 0;
 }
