@@ -44,9 +44,17 @@ int main()
 	List b(a);
 	b.Remove(1);
 	b.Remove(3);
+	b.Insert(3,7);
 	b.Print();
-	if(IsSubset(b.GetHead(),a.GetHead()))
-		cout<<"yes"<<endl;
+	/*if(IsSubset(b.GetHead(),a.GetHead()))
+		cout<<"yes"<<endl;*/
+	
+
+	Node *c = InterSet(a.GetHead(),b.GetHead());
+	for(;c!=NULL;c = c->Next())
+	{
+		cout<<c->Entry()<<endl;
+	}
 
 	return 0;
 }

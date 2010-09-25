@@ -4,6 +4,7 @@
 class Node
 {
 public:
+	Node(){}
 	Node(int _entry,Node* link = NULL)
 	{
 		entry = _entry;

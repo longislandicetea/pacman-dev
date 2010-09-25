@@ -52,3 +52,30 @@ static bool IsSubset(Node* head1,Node* head2)
 	return true;
 }
 
+
+//时间复杂度为o(n)求递增单链表交集
+static Node* InterSet(Node* head1,Node* head2)
+{
+	Node *newHead,*newNode,*p,*q,*current;
+	p = head1;
+	q = head2;
+	newHead = new Node();
+	current = newHead; 
+	while(p!=NULL)
+	{
+		if(p->Entry()<q->Entry())
+			p = p->Next();
+		else if(p->Entry()>q->Entry())
+			q = q->Next();
+		else
+		{
+			newNode = new Node(p->Entry());
+			current->Next() = newNode;
+			current = current->Next();
+			p = p->Next();
+			q = q->Next();
+		}
+	}
+	return newHead->Next();
+}
+
