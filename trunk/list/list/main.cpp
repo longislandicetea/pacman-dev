@@ -12,12 +12,13 @@ int main()
 	a.Insert(3,5);
 	a.Print();
 
-	cout<<endl;
-
-	a.Insert(3,4);
+	a.InsertOrder(4);
 	a.Print();
 
-	a.Remove(4);
+	/*a.Insert(3,4);
+	a.Print();*/
+
+	/*a.Remove(4);
 	a.Print();
 	cout << "Clear begin" << endl;
 	a.Clear();
@@ -28,17 +29,24 @@ int main()
 	a.Insert(1,2);
 	a.Insert(2,3);
 	a.Insert(3,5);
-	a.Print();
+	a.Print();*/
 
 	/*int tmp;
 	a.Retrieve(1,tmp);
 	cout<<tmp<<endl;*/
 
-	a.Reverse();
-	a.Print();
+	/*a.Reverse();
+	a.Print();*/
 
 	/*List b(a);
 	b.Print();*/
+
+	List b(a);
+	b.Remove(1);
+	b.Remove(3);
+	b.Print();
+	if(IsSubset(b.GetHead(),a.GetHead()))
+		cout<<"yes"<<endl;
 
 	return 0;
 }

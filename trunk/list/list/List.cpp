@@ -31,6 +31,8 @@ List::List(List& copy)
 			now = now->Next();
 		}
 	}
+	currentPos = 0;
+	current = head;
 }
 
 void List::Print()
@@ -162,3 +164,34 @@ void List::Reverse()
 		tmp.pop();
 	}
 }
+
+void List::InsertOrder(int insertEntry)
+{
+	Node *following,*previous,*newNode;
+	following = head;
+	previous = NULL;
+	while(following!=NULL)
+	{
+		if(insertEntry<following->Entry())
+			break;
+		previous = following;
+		following = following->Next();
+	}
+
+	newNode = new Node(insertEntry,following);
+
+	if(previous == NULL)
+		head = newNode;
+	else
+		previous->Next() = newNode;
+
+	++count;
+}
+
+Node* List::GetHead()
+{
+	return head;
+}
+
+
+
