@@ -14,6 +14,7 @@ public:
 	void Retrieve(int pos,int& x);
 	void Remove(int pos);
 	void Traverse(void(*visit)(int));
+	void Reverse();
 protected:
 	int cnt;
 	mutable int currentPos;
