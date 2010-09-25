@@ -196,3 +196,17 @@ DoubleLinkedList::~DoubleLinkedList()
 	std::cout<<"destructor end"<<std::endl;
 }
 
+void DoubleLinkedList::Reverse()
+{
+	while(current->Back()!=NULL)
+		current = current->Back();
+	Node* q;
+	while(current!=NULL)
+	{
+		q = current->Next();
+		current->Next() = current->Back();
+		current->Back() = q;
+		current = q;
+	}
+}
+
