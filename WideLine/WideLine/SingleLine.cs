@@ -68,6 +68,8 @@ namespace WideLine
             //k=0
             if (beg.Y == end.Y)
                 ;
+            else if (beg.X == end.X)
+                ;
             //k>1
             else if (end.Y - beg.Y >= end.X - beg.X)
             {
