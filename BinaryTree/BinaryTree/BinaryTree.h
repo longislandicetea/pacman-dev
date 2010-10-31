@@ -25,14 +25,17 @@ public:
 
 	void Preorder(void(*visit)(int& x))
 	{
+		recursivePreOrder(root,visit);
 	}
 
 	void Inorder(void(*visit)(int& x))
 	{
+		recursiveInOrder(root,visit);
 	}
 
 	void Postorder(void(*visit)(int& x))
 	{
+		recursivePostOrder(root,visit);
 	}
 
 	int Size() const
@@ -140,27 +143,7 @@ public:
 				nodes.push(tmp->Right);
 		}
 	}
-
-	//in insert order
-	void Print()
-	{
-		if(root == NULL)
-			return;
-		queue<BinaryNode*> nodes;
-		nodes.push(root);
-		while(!nodes.empty())
-		{
-			BinaryNode* tmp  = nodes.front();
-			nodes.pop();
-			cout<<tmp->Data<<endl;
-			if(tmp->Left!=NULL)
-				nodes.push(tmp->Left);
-			if(tmp->Right!=NULL)
-				nodes.push(tmp->Right);
-		}
-		cout<<endl;
-	}
-
+	
 	~BinaryTree()
 	{
 		Clear();
@@ -245,5 +228,35 @@ private:
 		subRoot->Right = tmp;
 		recursiveSym(subRoot->Left);
 		recursiveSym(subRoot->Right);
+	}
+
+	void recursiveInOrder(BinaryNode* subRoot,void(*visit)(int& x))
+	{
+		if(subRoot != NULL)
+		{
+			recursiveInOrder(subRoot->Left,visit);
+			(*visit)(subRoot->Data);
+			recursiveInOrder(subRoot->Right,visit);
+		}
+	}
+
+	void recursivePreOrder(BinaryNode* subRoot,void(*visit)(int& x))
+	{
+		if(subRoot != NULL)
+		{
+			(*visit)(subRoot->Data);
+			recursivePreOrder(subRoot->Left,visit);
+			recursivePreOrder(subRoot->Right,visit);
+		}
+	}
+
+	void recursivePostOrder(BinaryNode* subRoot,void(*visit)(int& x))
+	{
+		if(subRoot != NULL)
+		{
+			recursivePostOrder(subRoot->Left,visit);
+			recursivePostOrder(subRoot->Right,visit);
+			(*visit)(subRoot->Data);
+		}
 	}
 };
