@@ -1,9 +1,0 @@
-C:\Users\lenovo\code\svntrunk\Ellipse\Ellipse\obj\x86\Debug\ResolveAssemblyReference.cache
-C:\Users\lenovo\code\svntrunk\Ellipse\Ellipse\obj\x86\Debug\Ellipse.Properties.Resources.resources
-C:\Users\lenovo\code\svntrunk\Ellipse\Ellipse\obj\x86\Debug\GenerateResource.read.1.tlog
-C:\Users\lenovo\code\svntrunk\Ellipse\Ellipse\obj\x86\Debug\GenerateResource.write.1.tlog
-C:\Users\lenovo\code\svntrunk\Ellipse\Ellipse\bin\Debug\Ellipse.exe
-C:\Users\lenovo\code\svntrunk\Ellipse\Ellipse\bin\Debug\Ellipse.pdb
-C:\Users\lenovo\code\svntrunk\Ellipse\Ellipse\obj\x86\Debug\Ellipse.exe
-C:\Users\lenovo\code\svntrunk\Ellipse\Ellipse\obj\x86\Debug\Ellipse.pdb
-C:\Users\lenovo\code\svntrunk\Ellipse\Ellipse\obj\x86\Debug\Ellipse.Form1.resources

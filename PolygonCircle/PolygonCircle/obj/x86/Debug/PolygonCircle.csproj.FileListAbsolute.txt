@@ -1,9 +1,0 @@
-C:\Users\lenovo\code\svntrunk\PolygonCircle\PolygonCircle\obj\x86\Debug\ResolveAssemblyReference.cache
-C:\Users\lenovo\code\svntrunk\PolygonCircle\PolygonCircle\obj\x86\Debug\PolygonCircle.Properties.Resources.resources
-C:\Users\lenovo\code\svntrunk\PolygonCircle\PolygonCircle\obj\x86\Debug\GenerateResource.read.1.tlog
-C:\Users\lenovo\code\svntrunk\PolygonCircle\PolygonCircle\obj\x86\Debug\GenerateResource.write.1.tlog
-C:\Users\lenovo\code\svntrunk\PolygonCircle\PolygonCircle\bin\Debug\PolygonCircle.exe
-C:\Users\lenovo\code\svntrunk\PolygonCircle\PolygonCircle\bin\Debug\PolygonCircle.pdb
-C:\Users\lenovo\code\svntrunk\PolygonCircle\PolygonCircle\obj\x86\Debug\PolygonCircle.exe
-C:\Users\lenovo\code\svntrunk\PolygonCircle\PolygonCircle\obj\x86\Debug\PolygonCircle.pdb
-C:\Users\lenovo\code\svntrunk\PolygonCircle\PolygonCircle\obj\x86\Debug\PolygonCircle.Form1.resources
